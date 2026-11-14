@@ -1,13 +1,30 @@
 # 닿는제주: 휠체어·유아차 여행 접근성 검증 AI Agent
 
-## 심사위원 빠른 실행
+휠체어·유아차로 제주 여행을 준비할 때 화장실·주차·경사 정보를 조사 원문과 함께 확인할 수 있습니다. 전체 221곳 중 상세 자료가 있는 122곳을 판정합니다.
 
-1. 제출 ZIP을 압축 해제하고 그 폴더에서 터미널을 엽니다.
-2. `pip install -r requirements.txt`를 실행합니다.
-3. `python launch_app.py`를 실행합니다.
-4. `.env.eval`에 평가용 OpenAI 키가 들어 있으면 LLM 모드로 바로 실행됩니다. 키가 없으면 규칙 모드로 실행됩니다. 평가 종료 후 평가용 키를 폐기합니다. [키를 바꾸려면 → 메모장으로 키 넣기 A 참고](#a-openai-키-평가용llm)
-5. 기상청·관광공사·브이월드 키는 제출물에서 제외합니다. 키 없이도 같은 규칙으로 판정·추천을 수행합니다. 날씨는 미확인으로 표시하고, 지도는 인터넷 연결이 있을 때 CARTO 또는 OpenStreetMap 배경을 사용합니다. 실시간 위치 조회가 필요한 질문은 키에 따라 결과가 달라질 수 있습니다.
-6. 데이터 API 발급과 설정은 [API 키 안내서](docs/API_KEY_GUIDE.md)를 참고하세요.
+[빠른 실행](#심사위원-빠른-실행-windows) · [키 입력](#메모장으로-키-넣기) · [자주 나는 오류](#자주-나는-오류) · [결과 설명자료](docs/RESULT_REPORT.md)
+
+공개 데모는 규칙 모드로 실행됩니다. LLM을 활용한 질문 해석과 결과 설명은 평가용 키가 설정된 제출 ZIP에서 확인할 수 있습니다. [닿는제주 공개 데모](https://datneun-jeju.streamlit.app/)
+
+## 심사위원 빠른 실행 (Windows)
+
+Python 3.10 이상이 설치된 PC에서 실행하세요. 처음 패키지를 설치할 때는 인터넷 연결이 필요합니다.
+
+1. 제출 ZIP을 압축 해제합니다. 파일 탐색기에서 `requirements.txt`와 `launch_app.py`가 보이는 폴더를 열고 위쪽 주소창의 경로를 복사합니다.
+2. **Windows 키 + R**을 누르고 `cmd`를 입력한 뒤 Enter를 누릅니다.
+3. 검은 창에서 아래 명령을 한 줄씩 실행합니다. 첫 줄의 따옴표 안에는 1번에서 복사한 경로를 넣으세요. 두 번째 줄의 설치가 끝나면 세 번째 줄을 실행합니다.
+
+   ```cmd
+   cd /d "압축을 푼 폴더의 실제 경로"
+   python -m pip install -r requirements.txt
+   python launch_app.py
+   ```
+
+4. 브라우저에 **닿는제주**가 열리면 실행 완료입니다. 자동으로 열리지 않으면 검은 창에 표시된 주소를 브라우저 주소창에 붙여넣으세요.
+
+**평가용 키**는 `.env.eval`에 들어 있으면 자동으로 사용합니다. 키가 비어 있으면 규칙 모드로 실행합니다. 평가가 끝나면 키를 폐기합니다. [평가용 키 변경](#a-openai-키-평가용llm)
+
+기상청·관광공사·브이월드 키는 ZIP에서 제외합니다. 제출 DB로 판정·추천이 가능하며, 날씨는 미확인으로 표시됩니다. 온라인이면 CARTO 또는 OpenStreetMap 배경을 사용합니다. 외부 위치 조회 결과는 키 설정에 따라 달라질 수 있습니다. [데이터 API 설정](docs/API_KEY_GUIDE.md)
 
 ## 메모장으로 키 넣기
 
@@ -43,46 +60,9 @@
 - 메모장이 파일 이름을 ".env.eval.txt"로 바꾸지 않도록, 반드시 터미널에서 notepad .env.eval 로 여세요.
 - 키를 화면 캡처·메일·채팅에 붙이지 마세요.
 
-제주 여행지를 휠체어·유아차·보행약자의 조건으로 찾아보고, 화장실·주차·경사 정보를 **원본 근거와 함께** 확인하는 프로그램입니다. 제주데이터허브가 핵심·필수 데이터이며, 한국관광공사 무장애 여행 정보는 보조 출처입니다. 시설 조건·순위·이용 판단은 Python 규칙으로 계산하고, 선택적으로 LLM이 문장 해석과 설명을 맡습니다.
+## 추가 설정
 
-> 제출용 초안 · 2026-11-07. 현재 통합 221곳, 상세 판정 대상 122곳, 색인만 99곳. ‘가능’은 원문에 이용 가능한 일부 구간 근거가 있다는 뜻이며 전체 코스의 안전 보장이 아닙니다. 기능 추가는 종료하고 검증·문서 보완만 진행합니다.
-
-데이터 출처: 제주특별자치도·제주데이터허브, 한국관광공사, 기상청(공공누리 제1유형)
-
-## 설치
-
-Windows 10/11, Python 3.10 이상(개발 PC Python 3.13), Chrome/Edge를 권장합니다. GPU·한글 프로그램은 필요하지 않습니다. 압축 파일은 먼저 풀고, `cli.py`, `build_db.py`, `app.py`가 있는 폴더에서 PowerShell을 엽니다.
-
-```powershell
-python --version
-python -m venv .venv
-.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
-
-이후 명령의 `python`은 위 가상환경 Python을 사용합니다. 활성화하려면 `.venv\Scripts\Activate.ps1`을 실행합니다. 실행정책으로 활성화가 막히면 정책 변경 없이 `.venv\Scripts\python.exe cli.py --check`처럼 전체 경로로 실행할 수 있습니다.
-
-## .env 설정
-
-```powershell
-Copy-Item .env.example .env
-notepad .env
-```
-
-처음 만들 때만 복사합니다. 기존 `.env`가 있으면 덮어쓰지 마세요. 모두 빈 키로 두어도 DB 기반 규칙 판정이 동작합니다.
-
-| 변수 | 의미 |
-|---|---|
-| `LLM_PROVIDER` | `none` / `openai` / `gemini` / `claude` |
-| `LLM_API_KEY` | 선택한 제공자의 API 키. 코드·문서·캡처에 넣지 않음 |
-| `LLM_MODEL` | 비우면 제공자별 기본 모델 사용 |
-| `LLM_TIMEOUT` | 기본 20초 |
-| `LLM_DAILY_LIMIT` | 공란 또는 0은 제한 없음. 양수일 때만 일일 호출 제한 |
-| `LLM_USD_KRW` | 추정비용 환산용 가정 환율, 기본 1400. 실시간 환율 아님 |
-| `KMA_SERVICE_KEY` | 공공데이터포털 단기·중기예보 일반 인증키(Decoding) |
-| `KTO_SERVICE_KEY` | 관광공사 무장애 API 인증키(Decoding), 수집할 때 사용 |
-| `DB_PATH`, `EXTRA_DIR` | 공란이면 기본 DB·보조자료 경로 사용 |
-
-데이터 API 키와 일반 실행용 LLM 키는 `.env`에서 읽습니다. `.env`에 `OPENAI_API_KEY`가 비어 있으면 `.env.eval`의 평가용 키를 확인합니다. `python setup_keys.py --key LLM_API_KEY`처럼 숨김 입력으로 저장할 수 있습니다. 키를 수정한 뒤 CLI를 새로 실행하고 Streamlit 서버를 재시작하세요. 월 비용 상한·차단 기능은 없으며 호출 수·토큰 추정 비용만 참고 표시합니다. 자세한 발급·비용은 [키 안내](docs/API_KEY_GUIDE.md)를 보세요.
+가상환경과 일반 실행용 키 설정은 [API 키 안내서](docs/API_KEY_GUIDE.md)와 [사용자 매뉴얼](docs/USER_MANUAL.md)을 참고하세요.
 
 ## 데이터 준비·DB 점검
 
@@ -116,6 +96,41 @@ python launch_app.py
 
 PC와 폰을 같은 Wi-Fi에 연결합니다. PC에서 `ipconfig`로 현재 연결의 IPv4 주소를 확인하고, 폰 브라우저에 `http://<PC IPv4>:18766`을 입력합니다. 포트를 바꿨다면 같은 포트를 씁니다. Windows 방화벽이 묻는다면 신뢰하는 사설 네트워크에서만 해당 앱 접속을 허용합니다. 외부 인터넷 공개·로그인 기능은 제공하지 않습니다. 센터 보안망에서는 내부망 접근 허용 여부를 담당자에게 확인하세요.
 
+## Windows 환경 실행 안내
+
+### 1. Python 및 라이브러리 설치
+
+프로젝트 폴더에서 아래 명령으로 필요한 라이브러리를 설치합니다. 지원 Python 버전은 위의 빠른 실행 안내를 참고하세요.
+
+```cmd
+python -m pip install -r requirements.txt
+```
+
+### 2. 프로젝트 실행
+
+같은 폴더에서 아래 명령으로 앱을 실행할 수 있습니다.
+
+```cmd
+python -m streamlit run app.py
+```
+
+### 3. Windows 보안 정책 관련 오류
+
+일부 Windows 11 환경에서는 Smart App Control(스마트 앱 컨트롤)이나 애플리케이션 제어 정책이 pandas, pyarrow 등의 `.pyd` 파일을 차단할 수 있습니다. 이때 아래와 같은 오류가 표시될 수 있습니다.
+
+```text
+ImportError: DLL load failed while importing base:
+애플리케이션 제어 정책에서 이 파일을 차단했습니다.
+```
+
+1. Python과 필요한 라이브러리가 정상적으로 설치됐는지 확인합니다.
+2. **Windows 보안 → 앱 및 브라우저 컨트롤 → 스마트 앱 컨트롤 설정**에서 현재 상태를 확인합니다.
+3. Windows 이벤트 뷰어의 `Microsoft-Windows-CodeIntegrity/Operational` 로그에서 이벤트 ID `3077`을 확인합니다.
+4. 차단이 확인되면 Windows 업데이트 상태와 패키지의 설치 출처·디지털 서명, 조직의 보안 정책을 확인합니다.
+5. 관리되는 PC에서는 관리자에게 실행 허용 방법을 문의합니다.
+
+Smart App Control을 끄면 보호 수준이 낮아질 수 있고 다시 켜는 데 제약이 생길 수 있습니다. 기본 실행 절차에는 보안 설정 변경이 필요하지 않습니다. 위 오류는 Windows가 라이브러리 실행을 제한할 때 발생할 수 있습니다.
+
 ## 자주 나는 오류
 
 | 증상 | 확인·해결 |
@@ -139,9 +154,9 @@ PC와 폰을 같은 Wi-Fi에 연결합니다. PC에서 `ipconfig`로 현재 연�
 - [데이터 활용 명세](docs/DATA_SPEC.md)
 - [오류·제약사항](docs/LIMITS.md)
 
-회귀 검증: PowerShell에서 `Get-ChildItem validate*.py | ForEach-Object { python $_.Name; if ($LASTEXITCODE -ne 0) { throw "검증 실패: $($_.Name)" } }`. 검증에는 로컬 원본·DB가 필요하며, 모의 API 검사와 실제 호출 검사는 구분합니다. 민감정보·원본이 포함될 수 있는 로컬 검증 산출물은 공개하지 않습니다.
+검증은 `python validate_agent.py`로 실행합니다. 대표 질문 검증 결과는 [결과 설명자료](docs/RESULT_REPORT.md)에 있습니다.
 
-화면은 Streamlit1.66.1 이상이 필요합니다(개발 PC에서1.66.1 검증). 검색창의 Enter/파란 화살표로 실행하며 누구와·언제 칩을 고르면 문장보다 우선합니다. 자세한 화면 안내는 USER_MANUAL의 지도 앱 화면 절 참조. 제출본의 `.streamlit/config.toml`도 함께 유지하세요.
+데이터 출처는 제주특별자치도·제주데이터허브, 한국관광공사, 기상청(공공누리 제1유형)입니다.
 
 ## 데이터 이용조건
 
