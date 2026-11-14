@@ -20,6 +20,18 @@ APPENDIX_SCREENSHOTS = (
 # 별도 실험 스크립트: 인증정보가 들어 있어 앱 제출 대상에서 제외. 원본은 수정하지 않음.
 EXCLUDED_ROOT = {'# 사회복지시설 목록 전체를 받아서 CSV로 저장하는 코드.py'}
 
+def excluded_submission_name(name):
+    path = Path(name)
+    parts = tuple(part.lower() for part in path.parts)
+    return (
+        parts[:4] == ('data', 'raw', '2019', 'images')
+        or any(part in {'_to_delete', '__pycache__', '.pytest_cache', '.git', '.venv', '.cache'} for part in parts)
+        or any('catalog' in part for part in parts)
+        or path.suffix.lower() in {'.pyc', '.zip', '.xlsx', '.xls', '.pdf'}
+        or (path.name.lower().startswith('.env') and path.name.lower() != '.env.example')
+    )
+
+
 def check_db(path):
     with sqlite3.connect(path) as con:
         assert con.execute("SELECT value FROM run_info WHERE key='submission_no_catalog'").fetchone() == ('True',), '제출용 빌드 표식 없음'
@@ -40,11 +52,7 @@ def main():
             path=Path(path)
             if not path.is_file():return
             name=arc or path.relative_to(ROOT).as_posix()
-            parts=Path(name).parts
-            if any(x in parts for x in ('__pycache__','.git','.venv','.cache')):return
-            if path.suffix.lower() in ('.pyc','.zip','.xlsx','.xls'):return
-            if path.name.startswith('.env') and path.name!='.env.example':return
-            if 'catalog' in path.name.lower():return
+            if excluded_submission_name(name):return
             selected[name]=path
         for path in ROOT.glob('*.py'):
             if path.name not in EXCLUDED_ROOT:add(path)
@@ -93,7 +101,7 @@ def main():
         with zipfile.ZipFile(archive) as z:
             assert z.testzip() is None
             assert 'output/jeju_bf.sqlite' in z.namelist()
-            assert not any('catalog' in Path(n).name.lower() or n.endswith('.pyc') or (Path(n).name.startswith('.env') and Path(n).name!='.env.example') for n in z.namelist())
+            assert not any(excluded_submission_name(n) for n in z.namelist())
         print(text)
         print(f'제출 ZIP: {archive} / 파일 {len(manifest)+2}개 / {archive.stat().st_size:,} bytes')
         print('기존 DB·catalog 파생 보고서·실제 .env·캐시·개발 캡처 제외. 전체 목록: dist/submission_files.txt')
