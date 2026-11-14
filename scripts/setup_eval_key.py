@@ -1,6 +1,7 @@
 """평가용 OpenAI 키 확인과 제출 ZIP 생성."""
 
 import getpass
+import os
 import re
 import subprocess
 import sys
@@ -10,9 +11,29 @@ from pathlib import Path
 
 import requests
 
+ROOT = Path(__file__).resolve().parents[1]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
+
 from agent.config import DEFAULT_MODELS
 
-ROOT = Path(__file__).resolve().parents[1]
+
+def prompt_openai_key():
+    if os.name == "nt":
+        import tkinter as tk
+        from tkinter import simpledialog
+
+        window = tk.Tk()
+        window.withdraw()
+        try:
+            return (simpledialog.askstring(
+                "평가용 OpenAI 키", "키를 붙여 넣고 Enter", show="*", parent=window
+            ) or "").strip()
+        finally:
+            window.destroy()
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", getpass.GetPassWarning)
+        return getpass.getpass("키를 붙여 넣고 Enter: ").strip()
 
 
 def local_openai_key():
@@ -31,9 +52,7 @@ def main():
     try:
         key = local_openai_key()
         if not key:
-            with warnings.catch_warnings():
-                warnings.simplefilter("error", getpass.GetPassWarning)
-                key = getpass.getpass("키를 붙여 넣고 Enter: ").strip()
+            key = prompt_openai_key()
         if not re.fullmatch(r"sk-[A-Za-z0-9_-]+", key):
             print("키 오류: OpenAI 키 형식을 확인하세요.")
             return 1
