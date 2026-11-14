@@ -1,0 +1,417 @@
+﻿원래 경로,이동 경로,크기(바이트),이유,결과
+# 사회복지시설 목록 전체를 받아서 CSV로 저장하는 코드.py,_to_delete/# 사회복지시설 목록 전체를 받아서 CSV로 저장하는 코드.py,2377,현재 앱·제출 빌드에서 사용하지 않는 이전 작업 스크립트,이동
+__pycache__/app.cpython-313.pyc,_to_delete/__pycache__/app.cpython-313.pyc,8982,재생성 가능한 Python 캐시,이동
+__pycache__/app_results.cpython-313.pyc,_to_delete/__pycache__/app_results.cpython-313.pyc,28028,재생성 가능한 Python 캐시,이동
+__pycache__/build_db.cpython-313.pyc,_to_delete/__pycache__/build_db.cpython-313.pyc,42963,재생성 가능한 Python 캐시,이동
+__pycache__/caution_view.cpython-313.pyc,_to_delete/__pycache__/caution_view.cpython-313.pyc,9303,재생성 가능한 Python 캐시,이동
+__pycache__/chat_footer.cpython-313.pyc,_to_delete/__pycache__/chat_footer.cpython-313.pyc,4508,재생성 가능한 Python 캐시,이동
+__pycache__/chat_view.cpython-313.pyc,_to_delete/__pycache__/chat_view.cpython-313.pyc,12403,재생성 가능한 Python 캐시,이동
+__pycache__/cli.cpython-313.pyc,_to_delete/__pycache__/cli.cpython-313.pyc,12830,재생성 가능한 Python 캐시,이동
+__pycache__/collect_kto.cpython-313.pyc,_to_delete/__pycache__/collect_kto.cpython-313.pyc,11476,재생성 가능한 Python 캐시,이동
+__pycache__/facility_tiles.cpython-313.pyc,_to_delete/__pycache__/facility_tiles.cpython-313.pyc,12371,재생성 가능한 Python 캐시,이동
+__pycache__/leaflet_map.cpython-313.pyc,_to_delete/__pycache__/leaflet_map.cpython-313.pyc,3598,재생성 가능한 Python 캐시,이동
+__pycache__/leaflet_tiles.cpython-313.pyc,_to_delete/__pycache__/leaflet_tiles.cpython-313.pyc,8135,재생성 가능한 Python 캐시,이동
+__pycache__/make_submission.cpython-313.pyc,_to_delete/__pycache__/make_submission.cpython-313.pyc,11857,재생성 가능한 Python 캐시,이동
+__pycache__/map_background.cpython-313.pyc,_to_delete/__pycache__/map_background.cpython-313.pyc,10071,재생성 가능한 Python 캐시,이동
+__pycache__/map_display.cpython-313.pyc,_to_delete/__pycache__/map_display.cpython-313.pyc,10749,재생성 가능한 Python 캐시,이동
+__pycache__/map_icons.cpython-313.pyc,_to_delete/__pycache__/map_icons.cpython-313.pyc,2184,재생성 가능한 Python 캐시,이동
+__pycache__/result_view.cpython-313.pyc,_to_delete/__pycache__/result_view.cpython-313.pyc,31082,재생성 가능한 Python 캐시,이동
+__pycache__/setup_keys.cpython-313.pyc,_to_delete/__pycache__/setup_keys.cpython-313.pyc,3277,재생성 가능한 Python 캐시,이동
+__pycache__/ui_controls.cpython-313.pyc,_to_delete/__pycache__/ui_controls.cpython-313.pyc,2339,재생성 가능한 Python 캐시,이동
+__pycache__/validate_agent.cpython-313.pyc,_to_delete/__pycache__/validate_agent.cpython-313.pyc,10303,재생성 가능한 Python 캐시,이동
+__pycache__/validate_anchor.cpython-313.pyc,_to_delete/__pycache__/validate_anchor.cpython-313.pyc,19421,재생성 가능한 Python 캐시,이동
+__pycache__/validate_chat.cpython-313.pyc,_to_delete/__pycache__/validate_chat.cpython-313.pyc,9711,재생성 가능한 Python 캐시,이동
+__pycache__/validate_map_display.cpython-313.pyc,_to_delete/__pycache__/validate_map_display.cpython-313.pyc,8066,재생성 가능한 Python 캐시,이동
+__pycache__/validate_missing_place.cpython-313.pyc,_to_delete/__pycache__/validate_missing_place.cpython-313.pyc,9440,재생성 가능한 Python 캐시,이동
+__pycache__/validate_parking_context.cpython-313.pyc,_to_delete/__pycache__/validate_parking_context.cpython-313.pyc,11561,재생성 가능한 Python 캐시,이동
+__pycache__/validate_retained_results.cpython-313.pyc,_to_delete/__pycache__/validate_retained_results.cpython-313.pyc,3096,재생성 가능한 Python 캐시,이동
+agent/__pycache__/adaptive.cpython-313.pyc,_to_delete/agent/__pycache__/adaptive.cpython-313.pyc,14003,재생성 가능한 Python 캐시,이동
+agent/__pycache__/anchor.cpython-313.pyc,_to_delete/agent/__pycache__/anchor.cpython-313.pyc,17053,재생성 가능한 Python 캐시,이동
+agent/__pycache__/anchored.cpython-313.pyc,_to_delete/agent/__pycache__/anchored.cpython-313.pyc,24148,재생성 가능한 Python 캐시,이동
+agent/__pycache__/cache.cpython-313.pyc,_to_delete/agent/__pycache__/cache.cpython-313.pyc,9803,재생성 가능한 Python 캐시,이동
+agent/__pycache__/config.cpython-313.pyc,_to_delete/agent/__pycache__/config.cpython-313.pyc,4170,재생성 가능한 Python 캐시,이동
+agent/__pycache__/core.cpython-313.pyc,_to_delete/agent/__pycache__/core.cpython-313.pyc,42055,재생성 가능한 Python 캐시,이동
+agent/__pycache__/course_profile.cpython-313.pyc,_to_delete/agent/__pycache__/course_profile.cpython-313.pyc,18533,재생성 가능한 Python 캐시,이동
+agent/__pycache__/data.cpython-313.pyc,_to_delete/agent/__pycache__/data.cpython-313.pyc,13021,재생성 가능한 Python 캐시,이동
+agent/__pycache__/explanation_check.cpython-313.pyc,_to_delete/agent/__pycache__/explanation_check.cpython-313.pyc,2725,재생성 가능한 Python 캐시,이동
+agent/__pycache__/indoor.cpython-313.pyc,_to_delete/agent/__pycache__/indoor.cpython-313.pyc,5214,재생성 가능한 Python 캐시,이동
+agent/__pycache__/llm.cpython-313.pyc,_to_delete/agent/__pycache__/llm.cpython-313.pyc,10913,재생성 가능한 Python 캐시,이동
+agent/__pycache__/llm_errors.cpython-313.pyc,_to_delete/agent/__pycache__/llm_errors.cpython-313.pyc,5504,재생성 가능한 Python 캐시,이동
+agent/__pycache__/missing_place.cpython-313.pyc,_to_delete/agent/__pycache__/missing_place.cpython-313.pyc,2071,재생성 가능한 Python 캐시,이동
+agent/__pycache__/parking.cpython-313.pyc,_to_delete/agent/__pycache__/parking.cpython-313.pyc,11354,재생성 가능한 Python 캐시,이동
+agent/__pycache__/parser.cpython-313.pyc,_to_delete/agent/__pycache__/parser.cpython-313.pyc,18163,재생성 가능한 Python 캐시,이동
+agent/__pycache__/place_query.cpython-313.pyc,_to_delete/agent/__pycache__/place_query.cpython-313.pyc,15147,재생성 가능한 Python 캐시,이동
+agent/__pycache__/recommendation.cpython-313.pyc,_to_delete/agent/__pycache__/recommendation.cpython-313.pyc,5402,재생성 가능한 Python 캐시,이동
+agent/__pycache__/tools.cpython-313.pyc,_to_delete/agent/__pycache__/tools.cpython-313.pyc,18934,재생성 가능한 Python 캐시,이동
+agent/__pycache__/visit_assessment.cpython-313.pyc,_to_delete/agent/__pycache__/visit_assessment.cpython-313.pyc,7265,재생성 가능한 Python 캐시,이동
+agent/__pycache__/weather.cpython-313.pyc,_to_delete/agent/__pycache__/weather.cpython-313.pyc,21268,재생성 가능한 Python 캐시,이동
+catalog.xlsx,_to_delete/catalog.xlsx,95073,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+data/extra/kto_list_probe.csv,_to_delete/data/extra/kto_list_probe.csv,18688,임시 빌드 또는 개발 점검 산출물,이동
+docs/screenshots/app_coast_desktop_20261108.jpg,_to_delete/docs/screenshots/app_coast_desktop_20261108.jpg,26578,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/app_coast_mobile_20261108.jpg,_to_delete/docs/screenshots/app_coast_mobile_20261108.jpg,28402,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/app_hanlim_buttons_mobile_20261108.jpg,_to_delete/docs/screenshots/app_hanlim_buttons_mobile_20261108.jpg,29725,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/app_hanlim_desktop_20261108.jpg,_to_delete/docs/screenshots/app_hanlim_desktop_20261108.jpg,46446,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/app_hanlim_detail_mobile_20261108.jpg,_to_delete/docs/screenshots/app_hanlim_detail_mobile_20261108.jpg,33073,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/app_hanlim_mobile_20261108.jpg,_to_delete/docs/screenshots/app_hanlim_mobile_20261108.jpg,36368,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/app_parking_desktop_20261108.jpg,_to_delete/docs/screenshots/app_parking_desktop_20261108.jpg,29738,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/app_parking_detail_mobile_20261108.jpg,_to_delete/docs/screenshots/app_parking_detail_mobile_20261108.jpg,30057,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/app_parking_mobile_20261108.jpg,_to_delete/docs/screenshots/app_parking_mobile_20261108.jpg,29370,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chat32_coast_mobile_20261110.jpg,_to_delete/docs/screenshots/chat32_coast_mobile_20261110.jpg,22086,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chat32_coast_pc_20261110.jpg,_to_delete/docs/screenshots/chat32_coast_pc_20261110.jpg,60248,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chat32_hanlim_mobile_20261110.jpg,_to_delete/docs/screenshots/chat32_hanlim_mobile_20261110.jpg,31654,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chat32_hanlim_pc_20261110.jpg,_to_delete/docs/screenshots/chat32_hanlim_pc_20261110.jpg,50684,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chat32_home_mobile_20261110.jpg,_to_delete/docs/screenshots/chat32_home_mobile_20261110.jpg,23046,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chat32_home_pc_20261110.jpg,_to_delete/docs/screenshots/chat32_home_pc_20261110.jpg,35623,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chat32_hyeopjae_mobile_20261110.jpg,_to_delete/docs/screenshots/chat32_hyeopjae_mobile_20261110.jpg,24253,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chat32_hyeopjae_pc_20261110.jpg,_to_delete/docs/screenshots/chat32_hyeopjae_pc_20261110.jpg,35733,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chips33_mobile_20261110.jpg,_to_delete/docs/screenshots/chips33_mobile_20261110.jpg,32610,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/chips33_pc_20261110.jpg,_to_delete/docs/screenshots/chips33_pc_20261110.jpg,46434,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/cover_1_map.png,_to_delete/docs/screenshots/cover_1_map.png,319078,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/cover_2_detail.png,_to_delete/docs/screenshots/cover_2_detail.png,197783,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/cover_3_home.png,_to_delete/docs/screenshots/cover_3_home.png,158665,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/cover_4_aqua.png,_to_delete/docs/screenshots/cover_4_aqua.png,335544,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/fix27_coast_desktop_20261108.jpg,_to_delete/docs/screenshots/fix27_coast_desktop_20261108.jpg,27712,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/fix27_coast_mobile_20261108.jpg,_to_delete/docs/screenshots/fix27_coast_mobile_20261108.jpg,28758,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/fix27_parking_desktop_20261108.jpg,_to_delete/docs/screenshots/fix27_parking_desktop_20261108.jpg,30263,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/fix27_parking_mobile_20261108.jpg,_to_delete/docs/screenshots/fix27_parking_mobile_20261108.jpg,29967,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/footer35_home_mobile_20261111.jpg,_to_delete/docs/screenshots/footer35_home_mobile_20261111.jpg,30573,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/footer35_home_pc_20261111.jpg,_to_delete/docs/screenshots/footer35_home_pc_20261111.jpg,42711,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/footer35_panel_mobile_20261111.jpg,_to_delete/docs/screenshots/footer35_panel_mobile_20261111.jpg,48327,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/footer35_panel_pc_20261111.jpg,_to_delete/docs/screenshots/footer35_panel_pc_20261111.jpg,75276,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/home31_mobile_20261110.jpg,_to_delete/docs/screenshots/home31_mobile_20261110.jpg,31155,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/home31_pc_20261110.jpg,_to_delete/docs/screenshots/home31_pc_20261110.jpg,40153,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/home36_copy_mobile_20261111.jpg,_to_delete/docs/screenshots/home36_copy_mobile_20261111.jpg,30394,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/layout_coastal_summary_desktop_20261108.png,_to_delete/docs/screenshots/layout_coastal_summary_desktop_20261108.png,80540,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/layout_coastal_summary_mobile_20261108.png,_to_delete/docs/screenshots/layout_coastal_summary_mobile_20261108.png,59493,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/layout_hanlim_map_desktop_20261108.png,_to_delete/docs/screenshots/layout_hanlim_map_desktop_20261108.png,54738,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/layout_hanlim_map_mobile_20261108.png,_to_delete/docs/screenshots/layout_hanlim_map_mobile_20261108.png,54744,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/layout_hanlim_summary_desktop_20261108.png,_to_delete/docs/screenshots/layout_hanlim_summary_desktop_20261108.png,77738,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/layout_hanlim_summary_mobile_20261108.png,_to_delete/docs/screenshots/layout_hanlim_summary_mobile_20261108.png,77902,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/layout_hyeopjae_map_desktop_20261108.png,_to_delete/docs/screenshots/layout_hyeopjae_map_desktop_20261108.png,36560,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/layout_hyeopjae_map_mobile_20261108.png,_to_delete/docs/screenshots/layout_hyeopjae_map_mobile_20261108.png,26989,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_coast_mobile_after_20261110.jpg,_to_delete/docs/screenshots/leaflet34_coast_mobile_after_20261110.jpg,44081,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_coast_mobile_before_20261110.jpg,_to_delete/docs/screenshots/leaflet34_coast_mobile_before_20261110.jpg,41606,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_coast_pc_after_20261110.jpg,_to_delete/docs/screenshots/leaflet34_coast_pc_after_20261110.jpg,61117,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_coast_pc_before_20261110.jpg,_to_delete/docs/screenshots/leaflet34_coast_pc_before_20261110.jpg,49360,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_hanlim_mobile_after_20261110.jpg,_to_delete/docs/screenshots/leaflet34_hanlim_mobile_after_20261110.jpg,41407,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_hanlim_mobile_before_20261110.jpg,_to_delete/docs/screenshots/leaflet34_hanlim_mobile_before_20261110.jpg,30802,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_hanlim_pc_after_20261110.jpg,_to_delete/docs/screenshots/leaflet34_hanlim_pc_after_20261110.jpg,65167,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_hanlim_pc_before_20261110.jpg,_to_delete/docs/screenshots/leaflet34_hanlim_pc_before_20261110.jpg,56625,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_hyeopjae_mobile_after_20261110.jpg,_to_delete/docs/screenshots/leaflet34_hyeopjae_mobile_after_20261110.jpg,32655,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_hyeopjae_mobile_before_20261110.jpg,_to_delete/docs/screenshots/leaflet34_hyeopjae_mobile_before_20261110.jpg,29779,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_hyeopjae_pc_after_20261110.jpg,_to_delete/docs/screenshots/leaflet34_hyeopjae_pc_after_20261110.jpg,54269,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_hyeopjae_pc_before_20261110.jpg,_to_delete/docs/screenshots/leaflet34_hyeopjae_pc_before_20261110.jpg,48246,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/leaflet34_satellite_pc_20261110.jpg,_to_delete/docs/screenshots/leaflet34_satellite_pc_20261110.jpg,54922,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_carto_coast_mobile_20261109.jpg,_to_delete/docs/screenshots/map28_carto_coast_mobile_20261109.jpg,26853,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_carto_coast_pc_20261109.jpg,_to_delete/docs/screenshots/map28_carto_coast_pc_20261109.jpg,43142,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_carto_hanlim_mobile_20261109.jpg,_to_delete/docs/screenshots/map28_carto_hanlim_mobile_20261109.jpg,34882,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_carto_hanlim_pc_20261109.jpg,_to_delete/docs/screenshots/map28_carto_hanlim_pc_20261109.jpg,50874,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_native_carto_probe_pc_20261109.jpg,_to_delete/docs/screenshots/map28_native_carto_probe_pc_20261109.jpg,35139,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_osm_fallback_probe_pc_20261109.jpg,_to_delete/docs/screenshots/map28_osm_fallback_probe_pc_20261109.jpg,61514,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_osm_hanlim_pc_20261109.jpg,_to_delete/docs/screenshots/map28_osm_hanlim_pc_20261109.jpg,59186,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_vworld_coast_mobile_20261109.jpg,_to_delete/docs/screenshots/map28_vworld_coast_mobile_20261109.jpg,34234,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_vworld_coast_pc_20261109.jpg,_to_delete/docs/screenshots/map28_vworld_coast_pc_20261109.jpg,53131,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_vworld_hanlim_mobile_20261109.jpg,_to_delete/docs/screenshots/map28_vworld_hanlim_mobile_20261109.jpg,38000,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_vworld_hanlim_pc_20261109.jpg,_to_delete/docs/screenshots/map28_vworld_hanlim_pc_20261109.jpg,61608,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map28_vworld_hanlim_satellite_pc_20261109.jpg,_to_delete/docs/screenshots/map28_vworld_hanlim_satellite_pc_20261109.jpg,107571,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/map_mobile_hanlim.png,_to_delete/docs/screenshots/map_mobile_hanlim.png,48648,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/named37_hallasan_pc_20261111.jpg,_to_delete/docs/screenshots/named37_hallasan_pc_20261111.jpg,60180,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/named37_hanlim_mobile_20261111.jpg,_to_delete/docs/screenshots/named37_hanlim_mobile_20261111.jpg,45551,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/named37_hanlim_pc_20261111.jpg,_to_delete/docs/screenshots/named37_hanlim_pc_20261111.jpg,67261,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/named37_seongsan_bare_pc_20261111.jpg,_to_delete/docs/screenshots/named37_seongsan_bare_pc_20261111.jpg,65521,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/named37_seongsan_mobile_20261111.jpg,_to_delete/docs/screenshots/named37_seongsan_mobile_20261111.jpg,41436,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/named37_seongsan_wheelchair_pc_20261111.jpg,_to_delete/docs/screenshots/named37_seongsan_wheelchair_pc_20261111.jpg,65359,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/parking30_general_20261109.jpg,_to_delete/docs/screenshots/parking30_general_20261109.jpg,105376,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/shown_hanlim_map_20261108.png,_to_delete/docs/screenshots/shown_hanlim_map_20261108.png,53365,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/shown_hanlim_result_20261108.png,_to_delete/docs/screenshots/shown_hanlim_result_20261108.png,65507,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/shown_home_20261108.png,_to_delete/docs/screenshots/shown_home_20261108.png,47728,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/style29_coast_mobile_20261109.jpg,_to_delete/docs/screenshots/style29_coast_mobile_20261109.jpg,29452,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/style29_coast_pc_20261109.jpg,_to_delete/docs/screenshots/style29_coast_pc_20261109.jpg,87788,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/style29_hanlim_mobile_20261109.jpg,_to_delete/docs/screenshots/style29_hanlim_mobile_20261109.jpg,38108,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/style29_hanlim_pc_20261109.jpg,_to_delete/docs/screenshots/style29_hanlim_pc_20261109.jpg,62342,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/style29_home_mobile_20261109.jpg,_to_delete/docs/screenshots/style29_home_mobile_20261109.jpg,27056,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/style29_home_pc_20261109.jpg,_to_delete/docs/screenshots/style29_home_pc_20261109.jpg,33993,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/style29_hyeopjae_mobile_20261109.jpg,_to_delete/docs/screenshots/style29_hyeopjae_mobile_20261109.jpg,29456,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/style29_hyeopjae_pc_20261109.jpg,_to_delete/docs/screenshots/style29_hyeopjae_pc_20261109.jpg,46750,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/style29_swipe_mobile_20261109.jpg,_to_delete/docs/screenshots/style29_swipe_mobile_20261109.jpg,27749,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/verified_hanlim_map_mobile_20261108.png,_to_delete/docs/screenshots/verified_hanlim_map_mobile_20261108.png,37600,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/verified_hanlim_result_mobile_20261108.png,_to_delete/docs/screenshots/verified_hanlim_result_mobile_20261108.png,49961,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/verified_home_320px_20261108.png,_to_delete/docs/screenshots/verified_home_320px_20261108.png,33334,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/verified_home_mobile_20261108.png,_to_delete/docs/screenshots/verified_home_mobile_20261108.png,36108,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/verified_hyeopjae_map_mobile_20261108.png,_to_delete/docs/screenshots/verified_hyeopjae_map_mobile_20261108.png,30782,기획서 부록 목록에 없는 이전 캡처,이동
+docs/screenshots/verified_warning_card_mobile_20261108.png,_to_delete/docs/screenshots/verified_warning_card_mobile_20261108.png,43224,기획서 부록 목록에 없는 이전 캡처,이동
+logs/build.log,_to_delete/logs/build.log,37839,이전 실행 로그,이동
+output/audit_catalog.py,_to_delete/output/audit_catalog.py,1052,현재 앱·제출 빌드에서 사용하지 않는 이전 작업 스크립트,이동
+output/deck_bundle.js,_to_delete/output/deck_bundle.js,1701208,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/accessibility_item.csv,_to_delete/output/final_submission_check/csv/accessibility_item.csv,583304,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/conflict.csv,_to_delete/output/final_submission_check/csv/conflict.csv,3796,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/course_point.csv,_to_delete/output/final_submission_check/csv/course_point.csv,688004,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/extraction_failure.csv,_to_delete/output/final_submission_check/csv/extraction_failure.csv,2248,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/facility_detail.csv,_to_delete/output/final_submission_check/csv/facility_detail.csv,361983,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/kto_accessibility.csv,_to_delete/output/final_submission_check/csv/kto_accessibility.csv,84137,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/kto_hub_comparison.csv,_to_delete/output/final_submission_check/csv/kto_hub_comparison.csv,63,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/kto_place.csv,_to_delete/output/final_submission_check/csv/kto_place.csv,12201,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/measurement.csv,_to_delete/output/final_submission_check/csv/measurement.csv,98797,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/nearby_facility.csv,_to_delete/output/final_submission_check/csv/nearby_facility.csv,149240,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/parking_lot.csv,_to_delete/output/final_submission_check/csv/parking_lot.csv,3403820,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/place.csv,_to_delete/output/final_submission_check/csv/place.csv,90062,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/place_source_link.csv,_to_delete/output/final_submission_check/csv/place_source_link.csv,62235,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/review_queue.csv,_to_delete/output/final_submission_check/csv/review_queue.csv,6397,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/source_file.csv,_to_delete/output/final_submission_check/csv/source_file.csv,50299,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/status_rule.csv,_to_delete/output/final_submission_check/csv/status_rule.csv,456,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/csv/target_recommendation.csv,_to_delete/output/final_submission_check/csv/target_recommendation.csv,43695,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/jeju_bf.sqlite,_to_delete/output/final_submission_check/jeju_bf.sqlite,6201344,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/quality_report.json,_to_delete/output/final_submission_check/quality_report.json,5850,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/quality_report.md,_to_delete/output/final_submission_check/quality_report.md,4965,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/review/accessibility_for_review.csv,_to_delete/output/final_submission_check/review/accessibility_for_review.csv,462591,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/review/extraction_failures.csv,_to_delete/output/final_submission_check/review/extraction_failures.csv,2515,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/review/parking_import_report.json,_to_delete/output/final_submission_check/review/parking_import_report.json,5459,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/review/raw_scan_report.json,_to_delete/output/final_submission_check/review/raw_scan_report.json,53749,임시 빌드 또는 개발 점검 산출물,이동
+output/final_submission_check/review/review_queue.csv,_to_delete/output/final_submission_check/review/review_queue.csv,6433,임시 빌드 또는 개발 점검 산출물,이동
+output/finalize_submission_docs.py,_to_delete/output/finalize_submission_docs.py,5528,현재 앱·제출 빌드에서 사용하지 않는 이전 작업 스크립트,이동
+output/kto_probe.json,_to_delete/output/kto_probe.json,18,임시 빌드 또는 개발 점검 산출물,이동
+output/positron_style.json,_to_delete/output/positron_style.json,74107,임시 빌드 또는 개발 점검 산출물,이동
+output/rebuild_check/csv/accessibility_item.csv,_to_delete/output/rebuild_check/csv/accessibility_item.csv,62961,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/conflict.csv,_to_delete/output/rebuild_check/csv/conflict.csv,739,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/course_point.csv,_to_delete/output/rebuild_check/csv/course_point.csv,174732,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/extraction_failure.csv,_to_delete/output/rebuild_check/csv/extraction_failure.csv,54,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/facility_detail.csv,_to_delete/output/rebuild_check/csv/facility_detail.csv,361983,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/measurement.csv,_to_delete/output/rebuild_check/csv/measurement.csv,81495,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/nearby_facility.csv,_to_delete/output/rebuild_check/csv/nearby_facility.csv,149240,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/place.csv,_to_delete/output/rebuild_check/csv/place.csv,78623,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/place_source_link.csv,_to_delete/output/rebuild_check/csv/place_source_link.csv,37473,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/review_queue.csv,_to_delete/output/rebuild_check/csv/review_queue.csv,2634,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/source_file.csv,_to_delete/output/rebuild_check/csv/source_file.csv,55842,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/status_rule.csv,_to_delete/output/rebuild_check/csv/status_rule.csv,456,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/csv/target_recommendation.csv,_to_delete/output/rebuild_check/csv/target_recommendation.csv,43695,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/jeju_bf.sqlite,_to_delete/output/rebuild_check/jeju_bf.sqlite,1396736,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/quality_report.json,_to_delete/output/rebuild_check/quality_report.json,2760,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/quality_report.md,_to_delete/output/rebuild_check/quality_report.md,2141,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/review/accessibility_for_review.csv,_to_delete/output/rebuild_check/review/accessibility_for_review.csv,84124,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/review/extraction_failures.csv,_to_delete/output/rebuild_check/review/extraction_failures.csv,41,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_check/review/review_queue.csv,_to_delete/output/rebuild_check/review/review_queue.csv,2953,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/rebuild_validation.log,_to_delete/output/rebuild_validation.log,28233,이전 실행 로그,이동
+output/submission_audit/catalog_locations.json,_to_delete/output/submission_audit/catalog_locations.json,2944,대회 제공 카탈로그 또는 카탈로그 기반 산출물,이동
+output/tmpzfzy_f4f/raw/2019/모의장소16/제주무장애여행 데이터셋 가이드문서.hwp,_to_delete/output/tmpzfzy_f4f/raw/2019/모의장소16/제주무장애여행 데이터셋 가이드문서.hwp,74752,임시 빌드 또는 개발 점검 산출물,이동
+output/tmpzfzy_f4f/raw/2019/모의장소17/014-2.csv,_to_delete/output/tmpzfzy_f4f/raw/2019/모의장소17/014-2.csv,87,임시 빌드 또는 개발 점검 산출물,이동
+output/tmpzfzy_f4f/raw/2019/모의장소17/images/same.jpg,_to_delete/output/tmpzfzy_f4f/raw/2019/모의장소17/images/same.jpg,20,임시 빌드 또는 개발 점검 산출물,이동
+output/tmpzfzy_f4f/raw/2019/모의장소17/제주무장애여행 데이터셋 가이드문서.hwp,_to_delete/output/tmpzfzy_f4f/raw/2019/모의장소17/제주무장애여행 데이터셋 가이드문서.hwp,74752,임시 빌드 또는 개발 점검 산출물,이동
+output/update_submission.py,_to_delete/output/update_submission.py,3660,현재 앱·제출 빌드에서 사용하지 않는 이전 작업 스크립트,이동
+output/validation/anchor/build.log,_to_delete/output/validation/anchor/build.log,33635,이전 실행 로그,이동
+output/validation/anchor/ui.log,_to_delete/output/validation/anchor/ui.log,4751,이전 실행 로그,이동
+output/validation/anchor/validate_adaptive.log,_to_delete/output/validation/anchor/validate_adaptive.log,767,이전 실행 로그,이동
+output/validation/anchor/validate_agent.log,_to_delete/output/validation/anchor/validate_agent.log,124,이전 실행 로그,이동
+output/validation/anchor/validate_anchor.log,_to_delete/output/validation/anchor/validate_anchor.log,147,이전 실행 로그,이동
+output/validation/anchor/validate_execution_fixes.log,_to_delete/output/validation/anchor/validate_execution_fixes.log,183,이전 실행 로그,이동
+output/validation/anchor/validate_folder18.log,_to_delete/output/validation/anchor/validate_folder18.log,153,이전 실행 로그,이동
+output/validation/anchor/validate_legacy18.log,_to_delete/output/validation/anchor/validate_legacy18.log,142,이전 실행 로그,이동
+output/validation/anchor/validate_llm_models.log,_to_delete/output/validation/anchor/validate_llm_models.log,84,이전 실행 로그,이동
+output/validation/anchor/validate_llm_usage.log,_to_delete/output/validation/anchor/validate_llm_usage.log,172,이전 실행 로그,이동
+output/validation/anchor/validate_sources.log,_to_delete/output/validation/anchor/validate_sources.log,1069,이전 실행 로그,이동
+output/validation/anchor/validate_weather_places.log,_to_delete/output/validation/anchor/validate_weather_places.log,588,이전 실행 로그,이동
+output/validation/app_final_server.log,_to_delete/output/validation/app_final_server.log,185,이전 실행 로그,이동
+output/validation/app_final_server_error.log,_to_delete/output/validation/app_final_server_error.log,19004,이전 실행 로그,이동
+output/validation/app_layout_server.log,_to_delete/output/validation/app_layout_server.log,185,이전 실행 로그,이동
+output/validation/app_layout_server_error.log,_to_delete/output/validation/app_layout_server_error.log,39935,이전 실행 로그,이동
+output/validation/build_18_final.log,_to_delete/output/validation/build_18_final.log,33211,이전 실행 로그,이동
+output/validation/build_18_fixed.log,_to_delete/output/validation/build_18_fixed.log,33211,이전 실행 로그,이동
+output/validation/build_18_initial.log,_to_delete/output/validation/build_18_initial.log,39088,이전 실행 로그,이동
+output/validation/build_18_verified.log,_to_delete/output/validation/build_18_verified.log,33205,이전 실행 로그,이동
+output/validation/build_after_execution_fixes.log,_to_delete/output/validation/build_after_execution_fixes.log,28233,이전 실행 로그,이동
+output/validation/carto_probe_17.png,_to_delete/output/validation/carto_probe_17.png,2049,임시 빌드 또는 개발 점검 산출물,이동
+output/validation/carto_probe_8.png,_to_delete/output/validation/carto_probe_8.png,2049,임시 빌드 또는 개발 점검 산출물,이동
+output/validation/chat32_submission_build.log,_to_delete/output/validation/chat32_submission_build.log,98553,이전 실행 로그,이동
+output/validation/chat32_validate_app_design.log,_to_delete/output/validation/chat32_validate_app_design.log,600,이전 실행 로그,이동
+output/validation/chat32_validate_map_display.log,_to_delete/output/validation/chat32_validate_map_display.log,492,이전 실행 로그,이동
+output/validation/chips33_submission_build.log,_to_delete/output/validation/chips33_submission_build.log,98641,이전 실행 로그,이동
+output/validation/current_anchor.log,_to_delete/output/validation/current_anchor.log,25450,이전 실행 로그,이동
+output/validation/current_build.log,_to_delete/output/validation/current_build.log,50379,이전 실행 로그,이동
+output/validation/current_check.log,_to_delete/output/validation/current_check.log,868,이전 실행 로그,이동
+output/validation/current_hanlim.log,_to_delete/output/validation/current_hanlim.log,20868,이전 실행 로그,이동
+output/validation/current_ui.log,_to_delete/output/validation/current_ui.log,3172,이전 실행 로그,이동
+output/validation/design_server.log,_to_delete/output/validation/design_server.log,93,이전 실행 로그,이동
+output/validation/design_server_error.log,_to_delete/output/validation/design_server_error.log,20365,이전 실행 로그,이동
+output/validation/design_validate_adaptive.log,_to_delete/output/validation/design_validate_adaptive.log,565,이전 실행 로그,이동
+output/validation/design_validate_agent.log,_to_delete/output/validation/design_validate_agent.log,113,이전 실행 로그,이동
+output/validation/design_validate_anchor.log,_to_delete/output/validation/design_validate_anchor.log,147,이전 실행 로그,이동
+output/validation/design_validate_app_design.log,_to_delete/output/validation/design_validate_app_design.log,90,이전 실행 로그,이동
+output/validation/design_validate_execution_fixes.log,_to_delete/output/validation/design_validate_execution_fixes.log,183,이전 실행 로그,이동
+output/validation/design_validate_folder18.log,_to_delete/output/validation/design_validate_folder18.log,115,이전 실행 로그,이동
+output/validation/design_validate_legacy18.log,_to_delete/output/validation/design_validate_legacy18.log,105,이전 실행 로그,이동
+output/validation/design_validate_llm_models.log,_to_delete/output/validation/design_validate_llm_models.log,63,이전 실행 로그,이동
+output/validation/design_validate_llm_usage.log,_to_delete/output/validation/design_validate_llm_usage.log,128,이전 실행 로그,이동
+output/validation/design_validate_named_visit.log,_to_delete/output/validation/design_validate_named_visit.log,85,이전 실행 로그,이동
+output/validation/design_validate_parking.log,_to_delete/output/validation/design_validate_parking.log,136,이전 실행 로그,이동
+output/validation/design_validate_parking_context.log,_to_delete/output/validation/design_validate_parking_context.log,223,이전 실행 로그,이동
+output/validation/design_validate_result_layout.log,_to_delete/output/validation/design_validate_result_layout.log,95,이전 실행 로그,이동
+output/validation/design_validate_sources.log,_to_delete/output/validation/design_validate_sources.log,927,이전 실행 로그,이동
+output/validation/design_validate_submission.log,_to_delete/output/validation/design_validate_submission.log,67,이전 실행 로그,이동
+output/validation/design_validate_weather_places.log,_to_delete/output/validation/design_validate_weather_places.log,435,이전 실행 로그,이동
+output/validation/fix27_validate_adaptive.log,_to_delete/output/validation/fix27_validate_adaptive.log,565,이전 실행 로그,이동
+output/validation/fix27_validate_agent.log,_to_delete/output/validation/fix27_validate_agent.log,113,이전 실행 로그,이동
+output/validation/fix27_validate_anchor.log,_to_delete/output/validation/fix27_validate_anchor.log,147,이전 실행 로그,이동
+output/validation/fix27_validate_api_diagnostics.log,_to_delete/output/validation/fix27_validate_api_diagnostics.log,118,이전 실행 로그,이동
+output/validation/fix27_validate_app_design.log,_to_delete/output/validation/fix27_validate_app_design.log,125,이전 실행 로그,이동
+output/validation/fix27_validate_execution_fixes.log,_to_delete/output/validation/fix27_validate_execution_fixes.log,183,이전 실행 로그,이동
+output/validation/fix27_validate_folder18.log,_to_delete/output/validation/fix27_validate_folder18.log,115,이전 실행 로그,이동
+output/validation/fix27_validate_legacy18.log,_to_delete/output/validation/fix27_validate_legacy18.log,105,이전 실행 로그,이동
+output/validation/fix27_validate_llm_models.log,_to_delete/output/validation/fix27_validate_llm_models.log,63,이전 실행 로그,이동
+output/validation/fix27_validate_llm_usage.log,_to_delete/output/validation/fix27_validate_llm_usage.log,128,이전 실행 로그,이동
+output/validation/fix27_validate_map_display.log,_to_delete/output/validation/fix27_validate_map_display.log,96,이전 실행 로그,이동
+output/validation/fix27_validate_named_visit.log,_to_delete/output/validation/fix27_validate_named_visit.log,85,이전 실행 로그,이동
+output/validation/fix27_validate_parking.log,_to_delete/output/validation/fix27_validate_parking.log,136,이전 실행 로그,이동
+output/validation/fix27_validate_parking_context.log,_to_delete/output/validation/fix27_validate_parking_context.log,223,이전 실행 로그,이동
+output/validation/fix27_validate_result_layout.log,_to_delete/output/validation/fix27_validate_result_layout.log,95,이전 실행 로그,이동
+output/validation/fix27_validate_retained_results.log,_to_delete/output/validation/fix27_validate_retained_results.log,77,이전 실행 로그,이동
+output/validation/fix27_validate_sources.log,_to_delete/output/validation/fix27_validate_sources.log,927,이전 실행 로그,이동
+output/validation/fix27_validate_weather_places.log,_to_delete/output/validation/fix27_validate_weather_places.log,435,이전 실행 로그,이동
+output/validation/folder18/build.log,_to_delete/output/validation/folder18/build.log,33635,이전 실행 로그,이동
+output/validation/layout_validate_adaptive.log,_to_delete/output/validation/layout_validate_adaptive.log,1184,이전 실행 로그,이동
+output/validation/layout_validate_agent.log,_to_delete/output/validation/layout_validate_agent.log,148,이전 실행 로그,이동
+output/validation/layout_validate_anchor.log,_to_delete/output/validation/layout_validate_anchor.log,147,이전 실행 로그,이동
+output/validation/layout_validate_execution_fixes.log,_to_delete/output/validation/layout_validate_execution_fixes.log,183,이전 실행 로그,이동
+output/validation/layout_validate_folder18.log,_to_delete/output/validation/layout_validate_folder18.log,242,이전 실행 로그,이동
+output/validation/layout_validate_legacy18.log,_to_delete/output/validation/layout_validate_legacy18.log,231,이전 실행 로그,이동
+output/validation/layout_validate_llm_models.log,_to_delete/output/validation/layout_validate_llm_models.log,120,이전 실행 로그,이동
+output/validation/layout_validate_llm_usage.log,_to_delete/output/validation/layout_validate_llm_usage.log,262,이전 실행 로그,이동
+output/validation/layout_validate_map_display.log,_to_delete/output/validation/layout_validate_map_display.log,204,이전 실행 로그,이동
+output/validation/layout_validate_named_visit.log,_to_delete/output/validation/layout_validate_named_visit.log,179,이전 실행 로그,이동
+output/validation/layout_validate_parking.log,_to_delete/output/validation/layout_validate_parking.log,136,이전 실행 로그,이동
+output/validation/layout_validate_parking_context.log,_to_delete/output/validation/layout_validate_parking_context.log,223,이전 실행 로그,이동
+output/validation/layout_validate_result_layout.log,_to_delete/output/validation/layout_validate_result_layout.log,173,이전 실행 로그,이동
+output/validation/layout_validate_result_screen.log,_to_delete/output/validation/layout_validate_result_screen.log,7489,이전 실행 로그,이동
+output/validation/layout_validate_retained_results.log,_to_delete/output/validation/layout_validate_retained_results.log,162,이전 실행 로그,이동
+output/validation/layout_validate_sources.log,_to_delete/output/validation/layout_validate_sources.log,1372,이전 실행 로그,이동
+output/validation/layout_validate_submission.log,_to_delete/output/validation/layout_validate_submission.log,126,이전 실행 로그,이동
+output/validation/layout_validate_weather_places.log,_to_delete/output/validation/layout_validate_weather_places.log,874,이전 실행 로그,이동
+output/validation/leaflet34_submission_build.log,_to_delete/output/validation/leaflet34_submission_build.log,99634,이전 실행 로그,이동
+output/validation/map28_submission.log,_to_delete/output/validation/map28_submission.log,97496,이전 실행 로그,이동
+output/validation/map_display_ui.log,_to_delete/output/validation/map_display_ui.log,7928,이전 실행 로그,이동
+output/validation/named_visit/ui.log,_to_delete/output/validation/named_visit/ui.log,3474,이전 실행 로그,이동
+output/validation/named_visit/validate_adaptive.log,_to_delete/output/validation/named_visit/validate_adaptive.log,767,이전 실행 로그,이동
+output/validation/named_visit/validate_agent.log,_to_delete/output/validation/named_visit/validate_agent.log,124,이전 실행 로그,이동
+output/validation/named_visit/validate_execution_fixes.log,_to_delete/output/validation/named_visit/validate_execution_fixes.log,183,이전 실행 로그,이동
+output/validation/named_visit/validate_folder18.log,_to_delete/output/validation/named_visit/validate_folder18.log,153,이전 실행 로그,이동
+output/validation/named_visit/validate_legacy18.log,_to_delete/output/validation/named_visit/validate_legacy18.log,142,이전 실행 로그,이동
+output/validation/named_visit/validate_llm_models.log,_to_delete/output/validation/named_visit/validate_llm_models.log,84,이전 실행 로그,이동
+output/validation/named_visit/validate_llm_usage.log,_to_delete/output/validation/named_visit/validate_llm_usage.log,172,이전 실행 로그,이동
+output/validation/named_visit/validate_sources.log,_to_delete/output/validation/named_visit/validate_sources.log,1069,이전 실행 로그,이동
+output/validation/named_visit/validate_weather_places.log,_to_delete/output/validation/named_visit/validate_weather_places.log,588,이전 실행 로그,이동
+output/validation/parking/build.log,_to_delete/output/validation/parking/build.log,37824,이전 실행 로그,이동
+output/validation/parking/ui.log,_to_delete/output/validation/parking/ui.log,4252,이전 실행 로그,이동
+output/validation/parking/validate_adaptive.log,_to_delete/output/validation/parking/validate_adaptive.log,767,이전 실행 로그,이동
+output/validation/parking/validate_agent.log,_to_delete/output/validation/parking/validate_agent.log,124,이전 실행 로그,이동
+output/validation/parking/validate_anchor.log,_to_delete/output/validation/parking/validate_anchor.log,147,이전 실행 로그,이동
+output/validation/parking/validate_execution_fixes.log,_to_delete/output/validation/parking/validate_execution_fixes.log,183,이전 실행 로그,이동
+output/validation/parking/validate_folder18.log,_to_delete/output/validation/parking/validate_folder18.log,153,이전 실행 로그,이동
+output/validation/parking/validate_legacy18.log,_to_delete/output/validation/parking/validate_legacy18.log,142,이전 실행 로그,이동
+output/validation/parking/validate_llm_models.log,_to_delete/output/validation/parking/validate_llm_models.log,84,이전 실행 로그,이동
+output/validation/parking/validate_llm_usage.log,_to_delete/output/validation/parking/validate_llm_usage.log,172,이전 실행 로그,이동
+output/validation/parking/validate_map_display.log,_to_delete/output/validation/parking/validate_map_display.log,128,이전 실행 로그,이동
+output/validation/parking/validate_parking.log,_to_delete/output/validation/parking/validate_parking.log,136,이전 실행 로그,이동
+output/validation/parking/validate_sources.log,_to_delete/output/validation/parking/validate_sources.log,1069,이전 실행 로그,이동
+output/validation/parking/validate_weather_places.log,_to_delete/output/validation/parking/validate_weather_places.log,588,이전 실행 로그,이동
+output/validation/parking_context_ui.log,_to_delete/output/validation/parking_context_ui.log,192,이전 실행 로그,이동
+output/validation/parking_context_ui_verified.log,_to_delete/output/validation/parking_context_ui_verified.log,3944,이전 실행 로그,이동
+output/validation/result_samples.log,_to_delete/output/validation/result_samples.log,237,이전 실행 로그,이동
+output/validation/result_screen.log,_to_delete/output/validation/result_screen.log,7489,이전 실행 로그,이동
+output/validation/resume_make_submission_20261109.log,_to_delete/output/validation/resume_make_submission_20261109.log,70226,이전 실행 로그,이동
+output/validation/resume_make_submission_secure_20261109.log,_to_delete/output/validation/resume_make_submission_secure_20261109.log,70147,이전 실행 로그,이동
+output/validation/resume_validate_adaptive.log,_to_delete/output/validation/resume_validate_adaptive.log,765,이전 실행 로그,이동
+output/validation/resume_validate_agent.log,_to_delete/output/validation/resume_validate_agent.log,124,이전 실행 로그,이동
+output/validation/resume_validate_anchor.log,_to_delete/output/validation/resume_validate_anchor.log,147,이전 실행 로그,이동
+output/validation/resume_validate_api_diagnostics.log,_to_delete/output/validation/resume_validate_api_diagnostics.log,155,이전 실행 로그,이동
+output/validation/resume_validate_app_design.log,_to_delete/output/validation/resume_validate_app_design.log,174,이전 실행 로그,이동
+output/validation/resume_validate_execution_fixes.log,_to_delete/output/validation/resume_validate_execution_fixes.log,183,이전 실행 로그,이동
+output/validation/resume_validate_folder18.log,_to_delete/output/validation/resume_validate_folder18.log,153,이전 실행 로그,이동
+output/validation/resume_validate_legacy18.log,_to_delete/output/validation/resume_validate_legacy18.log,142,이전 실행 로그,이동
+output/validation/resume_validate_llm_models.log,_to_delete/output/validation/resume_validate_llm_models.log,84,이전 실행 로그,이동
+output/validation/resume_validate_llm_usage.log,_to_delete/output/validation/resume_validate_llm_usage.log,172,이전 실행 로그,이동
+output/validation/resume_validate_map_display.log,_to_delete/output/validation/resume_validate_map_display.log,128,이전 실행 로그,이동
+output/validation/resume_validate_named_visit.log,_to_delete/output/validation/resume_validate_named_visit.log,115,이전 실행 로그,이동
+output/validation/resume_validate_parking.log,_to_delete/output/validation/resume_validate_parking.log,136,이전 실행 로그,이동
+output/validation/resume_validate_parking_context.log,_to_delete/output/validation/resume_validate_parking_context.log,223,이전 실행 로그,이동
+output/validation/resume_validate_result_layout.log,_to_delete/output/validation/resume_validate_result_layout.log,126,이전 실행 로그,이동
+output/validation/resume_validate_retained_results.log,_to_delete/output/validation/resume_validate_retained_results.log,100,이전 실행 로그,이동
+output/validation/resume_validate_sources.log,_to_delete/output/validation/resume_validate_sources.log,1069,이전 실행 로그,이동
+output/validation/resume_validate_weather_places.log,_to_delete/output/validation/resume_validate_weather_places.log,588,이전 실행 로그,이동
+output/validation/style29_apptest.log,_to_delete/output/validation/style29_apptest.log,1228,이전 실행 로그,이동
+output/validation/style29_controls.log,_to_delete/output/validation/style29_controls.log,776,이전 실행 로그,이동
+output/validation/style29_final_apptest.log,_to_delete/output/validation/style29_final_apptest.log,1228,이전 실행 로그,이동
+output/validation/style29_final_controls.log,_to_delete/output/validation/style29_final_controls.log,776,이전 실행 로그,이동
+output/validation/style29_final_display.log,_to_delete/output/validation/style29_final_display.log,776,이전 실행 로그,이동
+output/validation/style29_submission.log,_to_delete/output/validation/style29_submission.log,98017,이전 실행 로그,이동
+output/validation/submission_current.log,_to_delete/output/validation/submission_current.log,95204,이전 실행 로그,이동
+output/validation/submission_drafts/build.log,_to_delete/output/validation/submission_drafts/build.log,33635,이전 실행 로그,이동
+output/validation/submission_drafts/credits_ui.log,_to_delete/output/validation/submission_drafts/credits_ui.log,3942,이전 실행 로그,이동
+output/validation/submission_drafts/ui.log,_to_delete/output/validation/submission_drafts/ui.log,4414,이전 실행 로그,이동
+output/validation/submission_drafts/validate_adaptive.log,_to_delete/output/validation/submission_drafts/validate_adaptive.log,767,이전 실행 로그,이동
+output/validation/submission_drafts/validate_agent.log,_to_delete/output/validation/submission_drafts/validate_agent.log,124,이전 실행 로그,이동
+output/validation/submission_drafts/validate_execution_fixes.log,_to_delete/output/validation/submission_drafts/validate_execution_fixes.log,183,이전 실행 로그,이동
+output/validation/submission_drafts/validate_folder18.log,_to_delete/output/validation/submission_drafts/validate_folder18.log,153,이전 실행 로그,이동
+output/validation/submission_drafts/validate_legacy18.log,_to_delete/output/validation/submission_drafts/validate_legacy18.log,142,이전 실행 로그,이동
+output/validation/submission_drafts/validate_llm_models.log,_to_delete/output/validation/submission_drafts/validate_llm_models.log,84,이전 실행 로그,이동
+output/validation/submission_drafts/validate_llm_usage.log,_to_delete/output/validation/submission_drafts/validate_llm_usage.log,172,이전 실행 로그,이동
+output/validation/submission_drafts/validate_sources.log,_to_delete/output/validation/submission_drafts/validate_sources.log,1069,이전 실행 로그,이동
+output/validation/submission_drafts/validate_weather_places.log,_to_delete/output/validation/submission_drafts/validate_weather_places.log,588,이전 실행 로그,이동
+output/validation/ui_simple_apptest.log,_to_delete/output/validation/ui_simple_apptest.log,7826,이전 실행 로그,이동
+output/validation/validate_adaptive_map28.log,_to_delete/output/validation/validate_adaptive_map28.log,765,이전 실행 로그,이동
+output/validation/validate_adaptive_style29.log,_to_delete/output/validation/validate_adaptive_style29.log,765,이전 실행 로그,이동
+output/validation/validate_agent_map28.log,_to_delete/output/validation/validate_agent_map28.log,124,이전 실행 로그,이동
+output/validation/validate_agent_style29.log,_to_delete/output/validation/validate_agent_style29.log,124,이전 실행 로그,이동
+output/validation/validate_anchor_map28.log,_to_delete/output/validation/validate_anchor_map28.log,147,이전 실행 로그,이동
+output/validation/validate_anchor_style29.log,_to_delete/output/validation/validate_anchor_style29.log,147,이전 실행 로그,이동
+output/validation/validate_api_diagnostics_map28.log,_to_delete/output/validation/validate_api_diagnostics_map28.log,155,이전 실행 로그,이동
+output/validation/validate_api_diagnostics_style29.log,_to_delete/output/validation/validate_api_diagnostics_style29.log,155,이전 실행 로그,이동
+output/validation/validate_app_design_map28.log,_to_delete/output/validation/validate_app_design_map28.log,174,이전 실행 로그,이동
+output/validation/validate_app_design_style29.log,_to_delete/output/validation/validate_app_design_style29.log,174,이전 실행 로그,이동
+output/validation/validate_app_style_style29.log,_to_delete/output/validation/validate_app_style_style29.log,708,이전 실행 로그,이동
+output/validation/validate_execution_fixes_map28.log,_to_delete/output/validation/validate_execution_fixes_map28.log,183,이전 실행 로그,이동
+output/validation/validate_execution_fixes_style29.log,_to_delete/output/validation/validate_execution_fixes_style29.log,183,이전 실행 로그,이동
+output/validation/validate_folder18_map28.log,_to_delete/output/validation/validate_folder18_map28.log,153,이전 실행 로그,이동
+output/validation/validate_folder18_style29.log,_to_delete/output/validation/validate_folder18_style29.log,153,이전 실행 로그,이동
+output/validation/validate_legacy18_map28.log,_to_delete/output/validation/validate_legacy18_map28.log,142,이전 실행 로그,이동
+output/validation/validate_legacy18_style29.log,_to_delete/output/validation/validate_legacy18_style29.log,142,이전 실행 로그,이동
+output/validation/validate_llm_models_map28.log,_to_delete/output/validation/validate_llm_models_map28.log,84,이전 실행 로그,이동
+output/validation/validate_llm_models_style29.log,_to_delete/output/validation/validate_llm_models_style29.log,84,이전 실행 로그,이동
+output/validation/validate_llm_usage_map28.log,_to_delete/output/validation/validate_llm_usage_map28.log,172,이전 실행 로그,이동
+output/validation/validate_llm_usage_style29.log,_to_delete/output/validation/validate_llm_usage_style29.log,172,이전 실행 로그,이동
+output/validation/validate_map_background_map28.log,_to_delete/output/validation/validate_map_background_map28.log,548,이전 실행 로그,이동
+output/validation/validate_map_background_style29.log,_to_delete/output/validation/validate_map_background_style29.log,1373,이전 실행 로그,이동
+output/validation/validate_map_display_map28.log,_to_delete/output/validation/validate_map_display_map28.log,128,이전 실행 로그,이동
+output/validation/validate_map_display_style29.log,_to_delete/output/validation/validate_map_display_style29.log,128,이전 실행 로그,이동
+output/validation/validate_named_visit_map28.log,_to_delete/output/validation/validate_named_visit_map28.log,115,이전 실행 로그,이동
+output/validation/validate_named_visit_style29.log,_to_delete/output/validation/validate_named_visit_style29.log,115,이전 실행 로그,이동
+output/validation/validate_parking_context_map28.log,_to_delete/output/validation/validate_parking_context_map28.log,223,이전 실행 로그,이동
+output/validation/validate_parking_context_style29.log,_to_delete/output/validation/validate_parking_context_style29.log,223,이전 실행 로그,이동
+output/validation/validate_parking_map28.log,_to_delete/output/validation/validate_parking_map28.log,136,이전 실행 로그,이동
+output/validation/validate_parking_style29.log,_to_delete/output/validation/validate_parking_style29.log,136,이전 실행 로그,이동
+output/validation/validate_result_layout_map28.log,_to_delete/output/validation/validate_result_layout_map28.log,126,이전 실행 로그,이동
+output/validation/validate_result_layout_style29.log,_to_delete/output/validation/validate_result_layout_style29.log,126,이전 실행 로그,이동
+output/validation/validate_result_screen_style29.log,_to_delete/output/validation/validate_result_screen_style29.log,1181,이전 실행 로그,이동
+output/validation/validate_retained_results_map28.log,_to_delete/output/validation/validate_retained_results_map28.log,100,이전 실행 로그,이동
+output/validation/validate_retained_results_style29.log,_to_delete/output/validation/validate_retained_results_style29.log,100,이전 실행 로그,이동
+output/validation/validate_sources_map28.log,_to_delete/output/validation/validate_sources_map28.log,1069,이전 실행 로그,이동
+output/validation/validate_sources_style29.log,_to_delete/output/validation/validate_sources_style29.log,1069,이전 실행 로그,이동
+output/validation/validate_weather_places_map28.log,_to_delete/output/validation/validate_weather_places_map28.log,588,이전 실행 로그,이동
+output/validation/validate_weather_places_style29.log,_to_delete/output/validation/validate_weather_places_style29.log,588,이전 실행 로그,이동
+output/voyager.png,_to_delete/output/voyager.png,2049,임시 빌드 또는 개발 점검 산출물,이동
+output/voyager_c.png,_to_delete/output/voyager_c.png,2049,임시 빌드 또는 개발 점검 산출물,이동
+output/voyager_style.json,_to_delete/output/voyager_style.json,74062,임시 빌드 또는 개발 점검 산출물,이동
+output/write_submission_audit.py,_to_delete/output/write_submission_audit.py,4601,현재 앱·제출 빌드에서 사용하지 않는 이전 작업 스크립트,이동
+src/__pycache__/common.cpython-313.pyc,_to_delete/src/__pycache__/common.cpython-313.pyc,10731,재생성 가능한 Python 캐시,이동
+src/__pycache__/db.cpython-313.pyc,_to_delete/src/__pycache__/db.cpython-313.pyc,8735,재생성 가능한 Python 캐시,이동
+src/__pycache__/extract_hwp.cpython-313.pyc,_to_delete/src/__pycache__/extract_hwp.cpython-313.pyc,29822,재생성 가능한 Python 캐시,이동
+src/__pycache__/hwp_reader.cpython-313.pyc,_to_delete/src/__pycache__/hwp_reader.cpython-313.pyc,19334,재생성 가능한 Python 캐시,이동
+src/__pycache__/integrate.cpython-313.pyc,_to_delete/src/__pycache__/integrate.cpython-313.pyc,8983,재생성 가능한 Python 캐시,이동
+src/__pycache__/kto_merge.cpython-313.pyc,_to_delete/src/__pycache__/kto_merge.cpython-313.pyc,15873,재생성 가능한 Python 캐시,이동
+src/__pycache__/legacy_points.cpython-313.pyc,_to_delete/src/__pycache__/legacy_points.cpython-313.pyc,5245,재생성 가능한 Python 캐시,이동
+src/__pycache__/parking_import.cpython-313.pyc,_to_delete/src/__pycache__/parking_import.cpython-313.pyc,7305,재생성 가능한 Python 캐시,이동
+src/__pycache__/prep_csv.cpython-313.pyc,_to_delete/src/__pycache__/prep_csv.cpython-313.pyc,11290,재생성 가능한 Python 캐시,이동
+src/__pycache__/quality.cpython-313.pyc,_to_delete/src/__pycache__/quality.cpython-313.pyc,11466,재생성 가능한 Python 캐시,이동
+src/__pycache__/raw_scan.cpython-313.pyc,_to_delete/src/__pycache__/raw_scan.cpython-313.pyc,4388,재생성 가능한 Python 캐시,이동
+dist/jeju_barrier_free_submission.zip,_to_delete/dist/jeju_barrier_free_submission.zip,1102767131,변경 전 제출 ZIP 및 그 파일 목록,이동
+dist/submission_files.txt,_to_delete/dist/submission_files.txt,42357,변경 전 제출 ZIP 및 그 파일 목록,이동
+dist/submission_manifest.json,_to_delete/dist/submission_manifest.json,161461,변경 전 제출 ZIP 및 그 파일 목록,이동
+output/cleanup_baseline.json,_to_delete/output/cleanup_baseline.json,637,이전 정리 전후 비교에 사용한 임시 기준 파일,이동
+output/submission_audit/current_packaging.log,_to_delete/output/submission_audit/current_packaging.log,78277,새 ZIP 생성이 끝난 뒤 보관한 임시 빌드 로그,이동

@@ -1,0 +1,5 @@
+pandas>=2.0
+openpyxl>=3.1     # --catalog에 xlsx 데이터 목록을 쓸 때만 필요
+# olefile         # 선택 사항: 설치되어 있으면 HWP 읽기에 사용, 없으면 내장 리더 사용
+requests>=2.31     # Agent: 기상청·LLM API 호출 (선택 기능)
+streamlit>=1.66.1     # 화면 (pydeck 지도 포함)

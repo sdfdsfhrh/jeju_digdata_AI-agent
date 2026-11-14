@@ -1,0 +1,19 @@
+{
+  "project": "Tabler Icons",
+  "license": "MIT",
+  "source": "https://github.com/tabler/tabler-icons",
+  "snapshot": "main / 2026-11-11",
+  "files": {
+    "check.svg": "81fea1cdae3a1ba030129ad943829edd90d74c10dae262af287537418d9bfe7c",
+    "chevron-down.svg": "6dccf86d87a229c5fba698fa79e765b2b5d5730a169dc17599067b27d05649c6",
+    "cloud-rain.svg": "18fb8c129949690b5c0c04f5842b72ea3f30be329464642184ffd38923c923b4",
+    "cloud-storm.svg": "3f107819fc2b1401934e6d6efd24e7b82a8734862468e65c6a9cda52f370cb3c",
+    "cloud.svg": "31961bc16735435d163b9b3047e802467ddca3fe7e47a3936fd91d035670a715",
+    "exclamation-mark.svg": "84d1c4bd973eae8d4bd738bb5245c4ade08b3533fdd0001cb1d03a569a8b04cc",
+    "parking.svg": "a8ce5a11352ef7b88dd16cb423444fb35dda30b246701b32e400f21f1f1ab819",
+    "question-mark.svg": "5b33138e0e02a96fcea5abdd965b1997ca8ab1e282d4b11f414594407406dda1",
+    "sun.svg": "9bd7a0556035b4ce914ff8a0338323d74bdeadc33b84f6b154cda76b85174d7f",
+    "wheelchair.svg": "2e48b0d87bf8a49c90b4249987e802c44bc5ffe5e22861266dc9b7a2261157f8",
+    "x.svg": "14d3080717fcb92ede16f7bfb313f0082e6783e8380ab067ff12efde3dc7edd6"
+  }
+}

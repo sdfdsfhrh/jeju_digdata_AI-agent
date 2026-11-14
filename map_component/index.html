@@ -1,0 +1,121 @@
+<!doctype html><html lang="ko"><meta charset="utf-8">
+<style>body{margin:0;font:13px system-ui,sans-serif;color:#606c76}#map{position:relative;border-radius:12px;overflow:hidden;background:#eaf0f3}#status{padding:7px 2px;line-height:1.5}#tip{position:absolute;pointer-events:none;background:white;padding:7px;border:1px solid #ccd3db;border-radius:6px;display:none;color:#253648;max-width:260px;z-index:5}canvas{outline:none}#cards{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:3px 3px 12px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}#cards button{flex:0 0 calc((100% - 28px)/2.55);min-width:240px;scroll-snap-align:start;border:1px solid #dfe6ee;border-radius:16px;background:white;text-align:left;padding:18px;font:15px system-ui,sans-serif;color:#243649;cursor:pointer;min-height:170px;line-height:1.55}#cards button.selected{border:2px solid #185fa5;background:#f4f9ff}#cards button:focus-visible{outline:3px solid #185fa5;outline-offset:2px}#cards .name{font-size:18px;font-weight:700;margin-bottom:10px}#cards .meta{font-size:13px;color:#6a7887;margin-top:9px}#cards .green{color:#236438}#cards .orange{color:#915309}#cards .red{color:#a12836}#heading{font-size:20px;color:#243649;margin:20px 0 12px}#results:empty{display:none}@media(max-width:640px){#cards button{flex-basis:82%;min-width:0}#heading{font-size:18px}}
+</style>
+<div id="root"><div id="map" role="img" aria-label="제주 장소 지도"><div id="tip"></div></div><div id="status" aria-live="polite">배경지도 준비 중…</div><section id="results"><h2 id="heading"></h2><div id="cards" aria-label="추천 장소 카드"></div></section></div>
+<link rel="stylesheet" href="maplibre-gl-4.7.1.css"><script src="maplibre-gl-4.7.1.js"></script><script src="deck.gl-9.2.6.js"></script><script>
+// 로컬 번들 + Streamlit 컴포넌트 프로토콜. API 키는 전달받지 않는다.
+const send=(type,extra={})=>parent.postMessage({isStreamlitMessage:true,type,...extra},'*');
+let app=null,args=null,pending=new Map(),timer=null,serial=0,oldTarget='',cartoFailed=false,activeProvider='',style='',tileLayer=null,readyAt=0,cartoRejected=false,cartoLoaded=false,cartoTimer=null,currentZoom=14,currentLayers=[],selectPending=false;
+const status=document.getElementById('status'),map=document.getElementById('map'),tip=document.getElementById('tip');
+function getter(v){
+ if(typeof v!=='string'||!v.startsWith('@@='))return v;
+ const e=v.slice(3).trim();
+ if(e.startsWith('[')) {const fields=e.slice(1,-1).split(',').map(s=>s.trim());return d=>fields.map(f=>d[f]);}
+ return d=>e.split('.').reduce((o,k)=>o?.[k],d);
+}
+function layer(spec){let props={...spec};delete props['@@type'];for(const k in props)if(k.startsWith('get'))props[k]=getter(props[k]);return new deck[spec['@@type']](props);}
+function caption(){
+ const credit=activeProvider==='브이월드'?'© 국토교통부 브이월드':activeProvider==='CARTO'?'© CARTO, © OpenStreetMap':'© OpenStreetMap 기여자';
+ status.textContent='배경지도: '+activeProvider+' · '+credit+(args.fallback?' · 브이월드 타일 실패로 대체':'')+(activeProvider==='OpenStreetMap'?' · CARTO 로딩 실패로 대체':'')+(activeProvider!=='브이월드'&&args.style==='위성'?' · 일반 지도 표시':'')+(cartoFailed?' · 배경 타일 통신 실패(표시·목록 유지)':'');
+ queueMicrotask(()=>send('streamlit:setFrameHeight',{height:document.getElementById('root').offsetHeight+8}));
+}
+function checkCarto(){
+ clearTimeout(cartoTimer);
+ if(activeProvider==='CARTO'&&!cartoLoaded)cartoTimer=setTimeout(()=>{if(!cartoLoaded&&activeProvider==='CARTO'){cartoRejected=true;update();}},12000);
+}
+
+function queue(tile){
+ const {x,y,z}=tile.index;const name=tile.layerName;const id=[name,z,x,y].join('/');
+ if(args.tiles[id])return Promise.resolve(args.tiles[id]);
+ if(pending.has(id))return pending.get(id).promise;
+ let resolve;const promise=new Promise(r=>resolve=r);pending.set(id,{tile:[name,z,x,y],promise,resolve,signal:tile.signal});
+ tile.signal?.addEventListener('abort',()=>{pending.get(id)?.resolve(null);pending.delete(id);},{once:true});
+ clearTimeout(timer);timer=setTimeout(()=>{if(selectPending)return;let origin='';try{origin=new URL(document.referrer).origin;}catch{}send('streamlit:setComponentValue',{value:{id:Date.now()+'-'+(++serial),tiles:[...pending.values()].filter(v=>!v.signal?.aborted).map(v=>v.tile).slice(0,40),origin}});},Math.max(100,readyAt-Date.now()));
+ return promise;
+}
+function background(){
+ const specs=args.spec.layers.filter(l=>l['@@type']==='TileLayer');
+ const previous=activeProvider;activeProvider=args.provider==='CARTO'&&cartoRejected?'OpenStreetMap':args.provider;caption();
+ if(previous!==activeProvider)checkCarto();
+ const bitmap=props=>{if(!props.data)return null;const b=props.tile.boundingBox;return new deck.BitmapLayer(props,{data:null,image:props.data,bounds:[b[0][0],b[0][1],b[1][0],b[1][1]]});};
+ if(activeProvider==='CARTO')return [];
+ if(activeProvider==='OpenStreetMap')return [new deck.TileLayer({id:'osm-standard',data:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',tileSize:256,minZoom:0,maxZoom:19,renderSubLayers:bitmap,onTileError:()=>{cartoFailed=true;caption();}})];
+ return specs.map(s=>new deck.TileLayer({id:s.id,data:s.data,minZoom:s.minZoom,maxZoom:s.maxZoom,tileSize:256,
+ getTileData:tile=>queue({...tile,layerName:s.data.split('/')[2]}).then(async u=>u?createImageBitmap(await(await fetch(u)).blob()):null),
+ renderSubLayers:bitmap,onTileError:()=>{args={...args,provider:'CARTO',fallback:true};update();}}));
+}
+function fitBounds(points,height){
+ const valid=points.filter(p=>Number.isFinite(p.lon)&&Number.isFinite(p.lat));
+ if(!valid.length)return args.spec.initialViewState;
+ const xs=valid.map(p=>p.lon),ys=valid.map(p=>p.lat);
+ let sw=[Math.min(...xs),Math.min(...ys)],ne=[Math.max(...xs),Math.max(...ys)];
+ if(sw[0]===ne[0]){sw[0]-=.0003;ne[0]+=.0003;}if(sw[1]===ne[1]){sw[1]-=.0003;ne[1]+=.0003;}
+ const v=new deck.WebMercatorViewport({width:map.clientWidth,height}).fitBounds([sw,ne],{padding:65,maxZoom:17});
+ return {longitude:v.longitude,latitude:v.latitude,zoom:v.zoom,pitch:0,bearing:0};
+}
+function renderCards(){
+ const box=document.getElementById('cards'),section=document.getElementById('results');
+ const previous=box.scrollLeft;box.replaceChildren();section.hidden=!args.cards.length;
+ document.getElementById('heading').textContent=args.heading||'';
+ for(const card of args.cards){
+  const button=document.createElement('button');button.className=card.place_id===args.selected_id?'selected':'';
+  button.setAttribute('aria-label',card.title+' 자세히');
+  for(const [cls,text] of [['name',card.title],[card.color,card.decision],['meta',card.meta],['red',card.missing]]){
+   if(!text)continue;const line=document.createElement('div');line.className=cls;line.textContent=text;button.append(line);
+  }
+  button.onclick=()=>{selectPending=true;clearTimeout(timer);button.classList.add('selected');send('streamlit:setComponentValue',{value:{id:Date.now()+'-select-'+(++serial),selected:card.place_id}});};
+  box.append(button);
+ }box.scrollLeft=previous;
+}
+function displayLayers(target){
+ const vp=new deck.WebMercatorViewport({width:map.clientWidth,height:args.height,...target});
+ const occupied=[],leaders=[];
+ const specs=args.spec.layers.filter(l=>l['@@type']!=='TileLayer').map(spec=>{
+  const layerSpec={...spec};
+  if(args.mode==='list'&&spec.id==='recommendation-pins'){
+   layerSpec.data=spec.data.map(pin=>{
+    const point=vp.project([pin.lon,pin.lat]);let offset=[0,0];
+    const candidates=[[0,0],...Array.from({length:32},(_,i)=>{const angle=i*Math.PI/4,r=8+8*Math.floor(i/8);return [Math.cos(angle)*r,Math.sin(angle)*r];})];
+    for(const candidate of candidates){if(occupied.every(p=>Math.hypot(point[0]+candidate[0]-p[0],point[1]+candidate[1]-p[1])>=37)){offset=candidate;break;}}
+    occupied.push([point[0]+offset[0],point[1]+offset[1]]);
+    if(offset[0]||offset[1])leaders.push({path:[[pin.lon,pin.lat],vp.unproject([point[0]+offset[0],point[1]+offset[1]])]});
+    return {...pin,offset};
+   });
+  }
+  if(['facility-labels','facility-icons','entrance-label'].includes(spec.id))layerSpec.visible=args.mode==='course'&&currentZoom>=13;
+  return layer(layerSpec);
+ });
+ if(leaders.length)specs.unshift(new deck.PathLayer({id:'pin-leaders',data:leaders,getPath:d=>d.path,getColor:[110,125,140,150],getWidth:1,widthUnits:'pixels'}));
+ return [...background(),...specs];
+}
+function update(){
+ let parentHeight;try{parentHeight=window.parent.innerHeight;}catch{parentHeight=window.screen.availHeight;}
+ if(args.responsive)args.height=Math.max(280,Math.round(parentHeight*(map.clientWidth<=640?.5:.6)));
+ map.style.height=args.height+'px';renderCards();
+ for(const [id,p] of pending)if(args.tiles[id]||args.provider==='CARTO'){p.resolve(args.tiles[id]||null);pending.delete(id);}
+ const target=fitBounds(args.bounds,args.height),targetKey=JSON.stringify(target);
+ if(!app||oldTarget!==targetKey)currentZoom=target.zoom;
+ currentLayers=displayLayers(target);
+ const tooltip=info=>{if(info.object?.info){tip.textContent=info.object.info;tip.style.display='block';tip.style.left=Math.max(4,Math.min(info.x+10,map.clientWidth-270))+'px';tip.style.top=Math.max(4,info.y-42)+'px';}else tip.style.display='none';};
+ const mapStyle=activeProvider==='CARTO'?args.spec.mapStyle:{version:8,sources:{},layers:[]};
+ if(!app){
+  app=new deck.DeckGL({container:map,map:maplibregl,mapStyle,mapOptions:{attributionControl:false},initialViewState:target,controller:true,layers:currentLayers,onHover:tooltip,onClick:tooltip,
+   onViewStateChange:({viewState})=>{const changed=(currentZoom>=13)!==(viewState.zoom>=13);currentZoom=viewState.zoom;if(changed){currentLayers=currentLayers.map(l=>['facility-labels','facility-icons','entrance-label'].includes(l.id)?l.clone({visible:args.mode==='course'&&currentZoom>=13}):l);app.setProps({layers:currentLayers});}},
+   parameters:{clearColor:[0,0,0,0]},onError:()=>{status.textContent='지도 표시 오류 · 원문 근거와 목록을 확인하세요.';}});
+  let tries=0;const watch=()=>{const base=app.getMapboxMap();if(!base){if(++tries<100)setTimeout(watch,50);return;}
+   if(activeProvider==='CARTO'&&base.loaded()){cartoLoaded=true;clearTimeout(cartoTimer);}
+   base.on('error',()=>{if(activeProvider==='CARTO'){cartoRejected=true;update();}});
+   base.on('idle',()=>{if(activeProvider==='CARTO'&&base.areTilesLoaded()&&Object.keys(base.getStyle()?.sources||{}).length){cartoLoaded=true;clearTimeout(cartoTimer);}});
+   base.on('sourcedata',e=>{if(activeProvider==='CARTO'&&e.sourceDataType==='content'&&e.isSourceLoaded){cartoLoaded=true;clearTimeout(cartoTimer);}});
+  };watch();
+ }else{
+  app.setProps({layers:currentLayers,mapStyle});
+  if(oldTarget!==targetKey)app.setProps({initialViewState:{...target,transitionDuration:700,transitionInterpolator:new deck.FlyToInterpolator()}});
+ }
+ oldTarget=targetKey;caption();
+}
+let lastWidth=0;new ResizeObserver(()=>{const w=map.clientWidth;if(w!==lastWidth){lastWidth=w;if(app&&args)update();}}).observe(map);
+window.addEventListener('resize',()=>{if(args&&app)update();});
+window.addEventListener('message',e=>{if(e.source!==parent||e.data.type!=='streamlit:render')return;args=e.data.args;try{update();}catch{status.textContent='지도 표시 오류 · 아래 장소 목록을 확인하세요.';}});
+send('streamlit:componentReady',{apiVersion:1});
+</script></html>

@@ -1,0 +1,11 @@
+{
+  "operation": "areaBasedList2",
+  "areaCode": 39,
+  "totalCount": 9,
+  "collected": 9,
+  "matches": [],
+  "result": "확인 결과 없음",
+  "checked": "2026-11-11",
+  "detailWithTour2": "areaBasedList2 전체 목록에 대상 contentid 없음 → 상세 조회 대상 없음(직접 상세 응답으로 부재 확인한 것은 아님)",
+  "stored_data": "기존 관광공사 57곳 저장 CSV 유지. 이번 정상 목록 9건으로 덮어쓰지 않음."
+}

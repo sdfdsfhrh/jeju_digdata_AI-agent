@@ -1,0 +1,6 @@
+﻿원래 경로,이동 경로,크기(바이트),이유,결과
+dist/jeju_barrier_free_submission.zip,_to_delete/dist/jeju_barrier_free_submission.zip,1102767131,변경 전 제출 ZIP 및 그 파일 목록,이동
+dist/submission_files.txt,_to_delete/dist/submission_files.txt,42357,변경 전 제출 ZIP 및 그 파일 목록,이동
+dist/submission_manifest.json,_to_delete/dist/submission_manifest.json,161461,변경 전 제출 ZIP 및 그 파일 목록,이동
+output/cleanup_baseline.json,_to_delete/output/cleanup_baseline.json,637,이전 정리 전후 비교에 사용한 임시 기준 파일,이동
+output/submission_audit/current_packaging.log,_to_delete/output/submission_audit/current_packaging.log,78277,새 ZIP 생성이 끝난 뒤 보관한 임시 빌드 로그,이동
