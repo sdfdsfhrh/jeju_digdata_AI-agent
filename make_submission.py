@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+from eval_env import read_eval_env
 
 ROOT = Path(__file__).resolve().parent
 DOCS = ['DATA_SPEC.md', 'LIMITS.md', 'USER_MANUAL.md', 'API_KEY_GUIDE.md', 'data_sources.csv', 'SUBMISSION_AUDIT.md', 'REGRESSION_BASELINES.json','SUBMISSION_SIZE.md','API_DIAGNOSTICS_20261108.md']
@@ -28,7 +29,7 @@ def excluded_submission_name(name):
         or any(part in {'_to_delete', '__pycache__', '.pytest_cache', '.git', '.venv', '.cache'} for part in parts)
         or any('catalog' in part for part in parts)
         or path.suffix.lower() in {'.pyc', '.zip', '.xlsx', '.xls', '.pdf'}
-        or (path.name.lower().startswith('.env') and path.name.lower() != '.env.example')
+        or (path.name.lower().startswith('.env') and name not in {'.env.example', '.env.eval'})
     )
 
 
@@ -41,6 +42,10 @@ def check_db(path):
         assert con.execute('PRAGMA integrity_check').fetchone() == ('ok',)
 
 def main():
+    try:
+        read_eval_env(ROOT / '.env.eval')
+    except (OSError, ValueError):
+        raise SystemExit('제출 중단: .env.eval 파일 및 허용 항목을 확인하세요. 데이터 API 키는 .env에만 설정하세요.') from None
     dest=ROOT/'dist';dest.mkdir(exist_ok=True)
     work=ROOT/'output';work.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='submission_build_',dir=work) as temporary:
@@ -62,6 +67,8 @@ def main():
             for path in (ROOT/folder).rglob('*.py'):add(path)
         for path in (ROOT/'map_component').rglob('*'):add(path)
         for name in DOCS:add(ROOT/'docs'/name)
+        for name in ('.env.eval', 'docs/PROMPTS.md', 'docs/RESULT_REPORT.md'):
+            add(ROOT/name)
         for name in APPENDIX_SCREENSHOTS:
             path = ROOT/'docs/screenshots'/name
             if not path.is_file():

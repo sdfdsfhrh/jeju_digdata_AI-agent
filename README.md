@@ -1,4 +1,13 @@
-# 닿는제주
+# 닿는제주: 휠체어·유아차 여행 접근성 검증 AI Agent
+
+## 심사위원 빠른 실행
+
+1. 제출 ZIP을 압축 해제하고 그 폴더에서 터미널을 엽니다.
+2. `pip install -r requirements.txt`를 실행합니다.
+3. `python launch_app.py`를 실행합니다.
+4. `.env.eval`에 평가용 OpenAI 키가 들어 있으면 LLM 모드로 바로 실행됩니다. 현재 양식은 공란이며 키가 없으면 규칙 모드로 실행됩니다. 평가 종료 후 평가용 키를 폐기합니다.
+5. 기상청·관광공사·브이월드 키는 제출물에서 제외합니다. 키 없이도 같은 규칙으로 판정·추천을 수행합니다. 날씨는 미확인으로 표시하고, 지도는 인터넷 연결이 있을 때 CARTO 또는 OpenStreetMap 배경을 사용합니다. 실시간 위치 조회가 필요한 질문은 키에 따라 결과가 달라질 수 있습니다.
+6. 데이터 API 발급과 설정은 [API 키 안내서](docs/API_KEY_GUIDE.md)를 참고하세요.
 
 제주 여행지를 휠체어·유아차·보행약자의 조건으로 찾아보고, 화장실·주차·경사 정보를 **원본 근거와 함께** 확인하는 프로그램입니다. 제주데이터허브가 핵심·필수 데이터이며, 한국관광공사 무장애 여행 정보는 보조 출처입니다. 시설 조건·순위·이용 판단은 Python 규칙으로 계산하고, 선택적으로 LLM이 문장 해석과 설명을 맡습니다.
 
@@ -39,7 +48,7 @@ notepad .env
 | `KTO_SERVICE_KEY` | 관광공사 무장애 API 인증키(Decoding), 수집할 때 사용 |
 | `DB_PATH`, `EXTRA_DIR` | 공란이면 기본 DB·보조자료 경로 사용 |
 
-API 키는 프로젝트의 `.env`에서 읽습니다. `python setup_keys.py --key LLM_API_KEY`처럼 숨김 입력으로 저장할 수 있습니다. 키를 수정한 뒤 CLI를 새로 실행하고 Streamlit 서버를 재시작하세요. 월 비용 상한·차단 기능은 없으며 호출 수·토큰 추정 비용만 참고 표시합니다. 자세한 발급·비용은 [키 안내](docs/API_KEY_GUIDE.md)를 보세요.
+데이터 API 키와 일반 실행용 LLM 키는 `.env`에서 읽습니다. `.env`에 `OPENAI_API_KEY`가 비어 있으면 `.env.eval`의 평가용 키를 확인합니다. `python setup_keys.py --key LLM_API_KEY`처럼 숨김 입력으로 저장할 수 있습니다. 키를 수정한 뒤 CLI를 새로 실행하고 Streamlit 서버를 재시작하세요. 월 비용 상한·차단 기능은 없으며 호출 수·토큰 추정 비용만 참고 표시합니다. 자세한 발급·비용은 [키 안내](docs/API_KEY_GUIDE.md)를 보세요.
 
 ## 데이터 준비·DB 점검
 
@@ -67,7 +76,7 @@ python cli.py "내일 오후 휠체어로 화장실 있는 해안 산책로" --n
 python launch_app.py
 ```
 
-`run_app.bat` 더블클릭도 가능합니다(가상환경을 활성화한 터미널에서 실행하면 해당 Python 사용). 기본 주소는 **http://localhost:18766**입니다. 사용 중이면 오류 안내가 나오며 `python launch_app.py --port 18767`로 바꿀 수 있습니다. 서버를 끝낼 때 터미널에서 Ctrl+C를 누릅니다. `--no-llm`은 LLM만 끄므로 기상청 키가 있으면 날씨는 계속 조회합니다.
+`run_app.bat` 더블클릭도 가능합니다(가상환경을 활성화한 터미널에서 실행하면 해당 Python 사용). 기본 주소는 **http://localhost:18766**입니다. 사용 중이면 오류 안내가 나오며 `python launch_app.py --port 18767`로 바꿀 수 있습니다. 서버를 끝낼 때 터미널에서 Ctrl+C를 누릅니다.
 
 ## 폰 접속
 
@@ -125,3 +134,9 @@ PC와 폰을 같은 Wi-Fi에 연결합니다. PC에서 `ipconfig`로 현재 연�
 
 국토교통부 브이월드(WMTS 배경지도, 장소 검색) / 한국관광공사(KorWithService2, KorService2) /
 기상청(단기예보, 중기 육상예보·기온예보) / LLM 선택(OpenAI, Google Gemini, Anthropic) / 배경지도 대체(CARTO, OpenStreetMap)
+
+
+## 공개 항목
+
+- 외부 코드: Leaflet(BSD-2-Clause), Tabler Icons(MIT), deck.gl(MIT), MapLibre GL JS(BSD-3-Clause)의 배포 파일을 포함합니다. 출처와 라이선스는 [데이터 활용 명세](docs/DATA_SPEC.md)에 있습니다.
+- [프롬프트 전문](docs/PROMPTS.md)과 [결과 설명자료](docs/RESULT_REPORT.md)

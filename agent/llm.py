@@ -151,4 +151,4 @@ def test_connection(fresh=False) -> tuple[bool, str]:
     out = ask("짧게 답하라.", "연결 확인: '정상'이라고만 답하라.", max_tokens=10)
     if out is None:
         return False, LLMStatus.last_error
-    return True, f"{config.LLM_PROVIDER}/{config.llm_model()} 응답: {out.strip()[:30]}"
+    return True, f"{config.LLM_PROVIDER}/{config.llm_model()} 응답 정상"

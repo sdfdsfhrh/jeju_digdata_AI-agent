@@ -31,6 +31,7 @@ a,b=st.columns([3,1],gap='small',vertical_alignment='center')
 with a:st.markdown('<div class="logo">닿는<span>제주</span></div><div class="subtitle">휠체어·유아차 여행 안내</div>',unsafe_allow_html=True)
 with b:
  if st.button('자료 안내'):show_information()
+ st.caption("LLM 사용 중" if config.llm_enabled() else "규칙 모드")
 history=st.session_state['conversation']
 if not history:st.markdown('<div class="eyebrow">JEJU, BARRIER-FREE</div><div class="hero">바퀴가 닿는 제주,<br>먼저 확인하고 떠나요.</div><div class="intro">경사, 계단, 화장실, 주차를 원본 조사 자료로 알려 드려요.</div>',unsafe_allow_html=True)
 st.session_state.pop('more_who',None)  # 이전 화면 세션의 숨은 선택값 제거

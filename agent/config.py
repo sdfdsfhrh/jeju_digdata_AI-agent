@@ -6,9 +6,12 @@ python-dotenv 없이도 동작하도록 간단한 .env 파서를 직접 둔다.
 from __future__ import annotations
 
 import os
+from pathlib import Path
+
+from eval_env import read_eval_env
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-API_KEY_NAMES = frozenset(("LLM_API_KEY", "KMA_SERVICE_KEY", "KTO_SERVICE_KEY", "VWORLD_API_KEY"))
+API_KEY_NAMES = frozenset(("LLM_API_KEY", "OPENAI_API_KEY", "KMA_SERVICE_KEY", "KTO_SERVICE_KEY", "VWORLD_API_KEY"))
 _FILE_API_KEYS: dict[str, str] = {}
 
 
@@ -48,6 +51,17 @@ def parse_daily_limit(value):
 
 
 LLM_DAILY_LIMIT = parse_daily_limit(get("LLM_DAILY_LIMIT"))
+if get("OPENAI_API_KEY"):
+    LLM_PROVIDER, LLM_API_KEY = "openai", get("OPENAI_API_KEY")
+else:
+    try:
+        evaluation = read_eval_env(Path(ROOT) / ".env.eval")
+    except (OSError, ValueError):
+        evaluation = {}
+    if evaluation.get("OPENAI_API_KEY"):
+        LLM_PROVIDER, LLM_API_KEY = "openai", evaluation["OPENAI_API_KEY"]
+        LLM_MODEL = ""
+        LLM_DAILY_LIMIT = parse_daily_limit(evaluation["LLM_DAILY_LIMIT"])
 LLM_USD_KRW = float(get('LLM_USD_KRW') or '1400')  # 실시간 환율이 아닌 참고용 가정
 
 # 공식 일반 텍스트 가격·지원 일정 확인: 2026-11-07 (HANDOFF §6-9 출처).

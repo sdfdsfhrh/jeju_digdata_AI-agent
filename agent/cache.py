@@ -171,4 +171,4 @@ def friendly_error(e: Exception) -> str:
         return "API 키 오류 또는 권한 없음(키·결제 상태 확인)"
     if "HTTP 429" in m:
         return "호출 한도 초과(잠시 후 다시 시도)"
-    return f"{n}: {m[:80]}"
+    return f"외부 호출 실패({n})"
