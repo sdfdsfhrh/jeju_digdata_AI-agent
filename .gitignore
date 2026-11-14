@@ -1,6 +1,8 @@
 .env
 .env.*
+.env.eval
 !.env.example
+!.env.eval.example
 catalog.xlsx
 data/raw/
 data/extra/

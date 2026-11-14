@@ -29,6 +29,7 @@ def excluded_submission_name(name):
         or any(part in {'_to_delete', '__pycache__', '.pytest_cache', '.git', '.venv', '.cache'} for part in parts)
         or any('catalog' in part for part in parts)
         or path.suffix.lower() in {'.pyc', '.zip', '.xlsx', '.xls', '.pdf'}
+        or path.name in {'평가키_넣기.bat', 'setup_eval_key.py'}
         or (path.name.lower().startswith('.env') and name not in {'.env.example', '.env.eval'})
     )
 
@@ -43,7 +44,7 @@ def check_db(path):
 
 def main():
     try:
-        read_eval_env(ROOT / '.env.eval')
+        evaluation = read_eval_env(ROOT / '.env.eval')
     except (OSError, ValueError):
         raise SystemExit('제출 중단: .env.eval 파일 및 허용 항목을 확인하세요. 데이터 API 키는 .env에만 설정하세요.') from None
     dest=ROOT/'dist';dest.mkdir(exist_ok=True)
@@ -67,8 +68,14 @@ def main():
             for path in (ROOT/folder).rglob('*.py'):add(path)
         for path in (ROOT/'map_component').rglob('*'):add(path)
         for name in DOCS:add(ROOT/'docs'/name)
-        for name in ('.env.eval', 'docs/PROMPTS.md', 'docs/RESULT_REPORT.md'):
+        for name in ('docs/PROMPTS.md', 'docs/RESULT_REPORT.md'):
             add(ROOT/name)
+        eval_snapshot = build / '.env.eval'
+        eval_snapshot.write_text(
+            ''.join(f'{name}={evaluation[name]}\n' for name in
+                    ('LLM_PROVIDER', 'OPENAI_API_KEY', 'LLM_DAILY_LIMIT')),
+            encoding='utf-8',
+        )
         for name in APPENDIX_SCREENSHOTS:
             path = ROOT/'docs/screenshots'/name
             if not path.is_file():
@@ -83,8 +90,10 @@ def main():
         add(ROOT/'data/manifest_override.csv')
         add(ROOT/'data/manifest.generated.csv')
         for path in build.rglob('*'):
-            if path.is_file():add(path,'output/'+path.relative_to(build).as_posix())
-        secrets=[]
+            if path.is_file() and path != eval_snapshot:add(path,'output/'+path.relative_to(build).as_posix())
+        add(eval_snapshot, '.env.eval')
+        eval_key = evaluation['OPENAI_API_KEY'].encode()
+        secrets=[eval_key] if eval_key else []
         env=ROOT/'.env'
         for line in (env.read_text(encoding='utf-8-sig').splitlines() if env.exists() else []):
             if '=' in line and not line.lstrip().startswith('#'):
@@ -94,7 +103,8 @@ def main():
         # ZIP을 쓰기 전 실키를 검사. 값은 출력하지 않고 발견 파일명만 남겨 생성 중단.
         for name,path in sorted(selected.items()):
             blob=path.read_bytes()
-            if any(secret in blob for secret in secrets):
+            if any(secret in blob for secret in secrets
+                   if name != '.env.eval' or secret != eval_key):
                 raise RuntimeError('제출 제외 필요(인증정보 포함): '+name)
             manifest.append(dict(path=name,bytes=len(blob),sha256=hashlib.sha256(blob).hexdigest()))
         text='\n'.join(x['path'] for x in manifest)+'\n'
@@ -112,5 +122,6 @@ def main():
         print(text)
         print(f'제출 ZIP: {archive} / 파일 {len(manifest)+2}개 / {archive.stat().st_size:,} bytes')
         print('기존 DB·catalog 파생 보고서·실제 .env·캐시·개발 캡처 제외. 전체 목록: dist/submission_files.txt')
+        print('ZIP 제외 확인: .git/ 0건, 평가키 입력 도구 0건')
 
 if __name__=='__main__':main()
