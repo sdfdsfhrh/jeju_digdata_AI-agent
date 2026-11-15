@@ -28,3 +28,4 @@ dist/
 .cache/
 _to_delete/
 .pytest_cache/
+.streamlit/secrets.toml
