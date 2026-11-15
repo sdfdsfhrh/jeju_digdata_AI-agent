@@ -81,5 +81,7 @@ def markup(result,advice=None,visit_date=None):
     chip='<span class="facility-recommend">'+esc(date_label(recommended[0].get('date'))+' 방문 추천')+'</span>' if recommended else ''
     caution='<span class="facility-weather-note">실외 코스 주의</span>' if weather.get('cautions') else ''
     credit = '<span class="facility-more">기상청 · 공공누리 제1유형</span>' if weather.get('status') == '조회됨' or recommended else ''
+    if value == '미확인' and weather.get('reason'):
+        weather_value += '<span class="facility-weather-note">' + esc(weather['reason']) + '</span>'
     third='<div class="facility-box facility-weather">'+(icon(weather_icon(weather)) if value!='미확인' else '')+'<div class="facility-label">날씨</div>'+weather_value+chip+caution+credit+'<span class="facility-more">날짜별 예보 보기'+icon('chevron-down','#64736a',13)+'</span></div>'
     return CSS+'<details class="facility-panel"><summary class="facility-grid" aria-label="날씨 · 날짜별 강수확률 펼치기">'+first+second+third+'</summary><div class="facility-weather-table">'+forecast_table(weather,advice,visit_date)+'</div></details>'
