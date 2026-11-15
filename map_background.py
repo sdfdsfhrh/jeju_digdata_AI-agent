@@ -21,7 +21,7 @@ ROOT=Path(__file__).resolve().parent
 _component=components.declare_component('jeju_map',path=str(ROOT/'map_component'))
 
 def tile_spec(style='일반'):
-    return ['Satellite','Hybrid'] if style=='위성' else ['white']
+    return ['Satellite','Hybrid'] if style=='위성' else ['Base']
 
 def valid_tile(t):
     return isinstance(t,list) and len(t)==4 and t[0] in LAYERS and all(type(x) is int for x in t[1:]) and 6<=t[1]<=(18 if t[0] in ('white','midnight') else 19) and all(0<=x<2**t[1] for x in t[2:])
@@ -63,6 +63,8 @@ def show(deck,*,key,height=360,start_view=None,mode='course',bounds=None,cards=N
     if state.get('fingerprint')!=fingerprint:
         state.update(tiles={},fallback=False,request=None,fingerprint=fingerprint)
         _tile.clear()
+    if state['fallback']:
+        st.caption('브이월드 타일 응답: ' + (state.get('reason') or '확인 불가'))
     if key_value and state['fallback'] and st.button('브이월드 다시 시도',key='retry-'+key):
         state.update(tiles={},fallback=False,request=None,reason='')
         _tile.clear()
