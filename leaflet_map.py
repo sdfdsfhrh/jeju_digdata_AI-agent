@@ -7,7 +7,7 @@ import map_display
 from leaflet_tiles import server
 ROOT=Path(__file__).resolve().parent
 
-def enabled():return config.get('MAP_ENGINE','leaflet').lower()!='pydeck'
+def enabled():return config.get('MAP_ENGINE','pydeck').lower()!='pydeck'
 
 def payload(results,selected_id=None,queried_target=None):
  places=[]
