@@ -1,5 +1,6 @@
 """대화형 화면. 판정/파서는 기존 core/apply_form 경로를 사용한다."""
 import datetime as dt
+from contextlib import nullcontext
 import streamlit as st
 from agent import config,core,data
 from agent.parser import TIME_SLOTS
@@ -26,6 +27,67 @@ iframe{border-radius:18px}.app-tiles{display:grid;grid-template-columns:repeat(3
 @media(max-width:640px){.privacy{font-size:8px;line-height:1.5;width:calc(100vw - 20px)}.block-container{padding:20px 12px 140px!important}.hero{font-size:32px}.eyebrow{margin-top:32px}.place-heading{font-size:18px}[data-testid=stChatMessage]{padding:12px}.facility{font-size:11px}}
 </style>"""
 st.markdown(CSS,unsafe_allow_html=True)
+HOME_CSS="""<style>
+.stApp:has(.st-key-home-shell){background:#eaf1ed}
+.stApp:has(.st-key-home-shell) .block-container{max-width:820px;padding-top:28px!important}
+.stApp:has(.st-key-home-shell) .logo{font-size:27px;letter-spacing:-1.2px}
+.stApp:has(.st-key-home-shell) .subtitle{color:#61776b;margin-top:3px}
+.stApp:has(.st-key-home-shell) [data-testid=stHorizontalBlock]:has(.logo){margin-bottom:13px}
+.stApp:has(.st-key-home-shell) [data-testid=stHorizontalBlock]:has(.logo) button{background:#f8fbf8;border-color:#ceddd3;color:#245a44}
+.stApp:has(.st-key-home-shell) [data-testid=stCaptionContainer]{color:#5a7465}
+.st-key-home-shell{background:#fffdf8;border:1px solid #d5e2d8;border-radius:30px;padding:34px 36px 30px;box-shadow:0 12px 38px rgba(35,77,53,.06);overflow:hidden}
+.st-key-home-shell [data-testid=stVerticalBlock]{gap:0.8rem}
+.welcome-hero{position:relative;padding:0 0 23px;isolation:isolate}
+.welcome-hero::before{content:"";position:absolute;right:7px;top:25px;width:82px;height:82px;border-radius:50%;background:#f6bc70;z-index:-1}
+.welcome-hero::after{content:"";position:absolute;right:12px;top:7px;width:38px;height:19px;border-radius:4px 24px 4px 24px;background:#87a78a;transform:rotate(-23deg);z-index:-1}
+.welcome-kicker{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border-radius:20px;background:#e9f1e8;color:#3f6650;font-size:10px;letter-spacing:2.1px;font-weight:650;margin-bottom:23px}
+.welcome-kicker::before{content:"";width:6px;height:6px;border-radius:50%;background:#cf6a37}
+.welcome-title{font-size:43px!important;line-height:1.36!important;font-weight:800!important;letter-spacing:-1.8px!important;color:#153f31!important;padding:0!important;margin:0 0 18px!important;max-width:580px;word-break:keep-all}
+.welcome-title span{color:#28664b}
+.welcome-title .welcome-dot{color:#cd6938}
+.welcome-description{font-size:15px;line-height:1.85;color:#62796b;margin:0;word-break:keep-all;max-width:520px}
+.welcome-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}
+.welcome-tags span{font-size:11px;line-height:1.5;color:#56725f;border:1px solid #dce5d8;border-radius:6px;padding:5px 9px;background:#f3f6ef}
+.st-key-home-options{border-top:1px solid #e3e9dd;padding-top:22px}
+.welcome-options-title{font-size:16px;font-weight:750;color:#234b38;letter-spacing:-.3px;margin:0 0 8px}
+.st-key-home-options [data-testid=stWidgetLabel] p{font-size:13px;font-weight:650;color:#52695b}
+.st-key-home-options [data-testid=stButtonGroup]>div{gap:8px}
+.st-key-home-options button[data-variant=pills]{border:1px solid #d3dfd1;background:#fffefa;color:#365744;min-height:42px!important;padding:7px 17px!important;border-radius:14px!important;transition:background .15s,border-color .15s,box-shadow .15s}
+.st-key-home-options button[data-variant=pills]:hover{background:#edf4e9;border-color:#91b79a}
+.st-key-home-options button[aria-checked=true]{background:#205b40!important;border-color:#205b40!important;color:#fff!important;box-shadow:0 3px 9px rgba(29,83,56,.12)}
+.st-key-home-options button[aria-checked=true] p{color:#fff!important}
+.st-key-home-options button:focus-visible,.st-key-home-examples button:focus-visible{outline:3px solid #d4824f!important;outline-offset:3px}
+.welcome-examples-label{font-size:12px;color:#7c7e64;margin:13px 0 1px}
+.st-key-home-examples{gap:8px!important;flex-wrap:wrap!important}
+.st-key-home-examples button{background:#f7eddd;border:1px solid #ead6b8;color:#8b522f;border-radius:12px!important;min-height:40px!important;padding:7px 13px!important;font-size:13px}
+.st-key-home-examples button:hover{background:#f2dfc4;border-color:#dcb78c;color:#713f24}
+.stApp:has(.st-key-home-shell) [data-testid=stBottom],.stApp:has(.st-key-home-shell) [data-testid=stBottomBlockContainer],.stApp:has(.st-key-home-shell) .privacy{background:#eaf1ed!important}
+.stApp:has(.st-key-home-shell) [data-testid=stBottomBlockContainer]{max-width:820px;margin:auto;padding-top:14px}
+.stApp:has(.st-key-home-shell) [data-testid=stChatInput]{border:1px solid #c2d6c8!important;box-shadow:0 5px 20px rgba(35,77,53,.07);border-radius:20px!important}
+.stApp:has(.st-key-home-shell) [data-testid=stChatInputSubmitButton]{background:#205b40!important}
+.stApp:has(.st-key-home-shell) .privacy{color:#607b68;width:100%;padding:9px 18px;bottom:0}
+.st-key-home-question{margin-top:4px}
+.st-key-home-question [data-testid=stChatInput]{min-height:65px}
+@media(max-width:640px){
+ .stApp:has(.st-key-home-shell) .block-container{padding:19px 14px 145px!important}
+ .stApp:has(.st-key-home-shell) .logo{font-size:25px}
+ .st-key-home-shell{border-radius:24px;padding:25px 22px 23px}
+ .welcome-hero{padding-bottom:20px}
+ .welcome-kicker{font-size:9px;letter-spacing:1.6px;padding:7px 10px;margin-bottom:22px}
+ .welcome-hero::before{width:48px;height:48px;right:0;top:7px}
+ .welcome-hero::after{width:25px;height:13px;right:0;top:-5px}
+ .welcome-title{font-size:32px!important;letter-spacing:-1.3px!important;line-height:1.4!important;margin-bottom:16px!important}
+ .welcome-description{font-size:13px;line-height:1.8}
+ .welcome-tags{margin-top:17px;gap:5px}.welcome-tags span{font-size:10px;padding:4px 7px}
+ .st-key-home-options{padding-top:18px}.welcome-options-title{font-size:15px}
+ .st-key-home-options [data-testid=stButtonGroup]>div{gap:6px}
+ .st-key-home-options button[data-variant=pills]{padding:7px 12px!important;min-height:41px!important}
+ .st-key-home-examples button{padding:7px 10px!important}
+ .stApp:has(.st-key-home-shell) [data-testid=stBottomBlockContainer]{padding-left:14px;padding-right:14px}
+}
+@media(max-width:380px){.st-key-home-shell{padding:23px 17px}.welcome-title{font-size:29px!important}.welcome-hero::before{opacity:.55}.welcome-hero::after{opacity:.7}.st-key-home-options button[data-variant=pills]{padding:7px 9px!important}}
+</style>"""
+st.html(HOME_CSS)
 st.session_state.setdefault('conversation',[])
 a,b=st.columns([3,1],gap='small',vertical_alignment='center')
 with a:st.markdown('<div class="logo">닿는<span>제주</span></div><div class="subtitle">휠체어·유아차 여행 안내</div>',unsafe_allow_html=True)
@@ -33,21 +95,27 @@ with b:
  if st.button('자료 안내'):show_information()
  st.caption("LLM 사용 중" if config.llm_enabled() else "규칙 모드")
 history=st.session_state['conversation']
-if not history:st.markdown('<div class="eyebrow">JEJU, BARRIER-FREE</div><div class="hero">바퀴가 닿는 제주,<br>먼저 확인하고 떠나요.</div><div class="intro">경사, 계단, 화장실, 주차를 원본 조사 자료로 알려 드려요.</div>',unsafe_allow_html=True)
-st.session_state.pop('more_who',None)  # 이전 화면 세션의 숨은 선택값 제거
-st.pills('누구와',['휠체어','유아차','어르신'],key='who')
-st.pills('언제',['오늘','내일','이번 주말','날짜'],key='when')
 today=dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date()
 date=None;slot=None
-if st.session_state.get('when')=='날짜':
- date=st.date_input('방문 날짜',value=None,min_value=today,max_value=today+dt.timedelta(days=10))
- slot=st.selectbox('시간대',['문장에서 자동']+list(TIME_SLOTS))
 EXAMPLES=[('해안 산책로 ↗','수동휠체어로 갈 수 있는 해안 산책로 추천해줘'),('협재해수욕장 ↗','협재해수욕장 휠체어로 갈 수 있어?'),('한림공원 ↗','한림공원 휠체어로 갈 수 있어?')]
-if not history:
- with st.container(horizontal=True):
-  for label,q in EXAMPLES:
-   if st.button(label):st.session_state['pending']=q
-question=st.chat_input('어디로 가고 싶으세요?') or st.session_state.pop('pending',None)
+with st.container(key='home-shell') if not history else nullcontext():
+ if not history:
+  st.markdown('<div class="welcome-hero"><div class="welcome-kicker">JEJU, BARRIER-FREE</div><h1 class="welcome-title">바퀴가 닿는 제주,<br><span>먼저 확인하고 떠나요<span class="welcome-dot">.</span></span></h1><p class="welcome-description">경사, 계단, 화장실, 주차를<br>원본 조사 자료로 알려 드려요.</p><div class="welcome-tags"><span>코스와 경사</span><span>주차와 화장실</span><span>방문일 날씨</span></div></div>',unsafe_allow_html=True)
+ with st.container(key='home-options') if not history else nullcontext():
+  if not history:st.markdown('<div class="welcome-options-title">어떤 여행을 준비하시나요?</div>',unsafe_allow_html=True)
+  st.session_state.pop('more_who',None)  # 이전 화면 세션의 숨은 선택값 제거
+  st.pills('누구와',['휠체어','유아차','어르신'],key='who')
+  st.pills('언제',['오늘','내일','이번 주말','날짜'],key='when')
+  if st.session_state.get('when')=='날짜':
+   date=st.date_input('방문 날짜',value=None,min_value=today,max_value=today+dt.timedelta(days=10))
+   slot=st.selectbox('시간대',['문장에서 자동']+list(TIME_SLOTS))
+ if not history:
+  st.markdown('<div class="welcome-examples-label">이런 질문으로 시작해 보세요</div>',unsafe_allow_html=True)
+  with st.container(horizontal=True,key='home-examples'):
+   for label,q in EXAMPLES:
+    if st.button(label):st.session_state['pending']=q
+with st.container(key='home-question') if not history else nullcontext():
+ question=st.chat_input('어디로 가고 싶으세요?') or st.session_state.pop('pending',None)
 if question:
  form=question_form(question,st.session_state.get('who'),st.session_state.get('when'),date,slot,today)
  with st.spinner('자료를 확인하고 있어요…'):
