@@ -39,7 +39,7 @@ _load_dotenv(os.path.join(ROOT, ".env"))
 try:
     import streamlit as st
 
-    for name in ("OPENAI_API_KEY", "KMA_SERVICE_KEY"):
+    for name in ("OPENAI_API_KEY", "KMA_SERVICE_KEY", "VWORLD_API_KEY"):
         value = st.secrets.get(name)
         if isinstance(value, str) and value.strip() and not _FILE_API_KEYS.get(name):
             _FILE_API_KEYS[name] = value.strip()
