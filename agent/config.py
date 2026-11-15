@@ -35,6 +35,21 @@ def _load_dotenv(path: str):
 _load_dotenv(os.path.join(ROOT, ".env"))
 
 
+# Load private settings on Streamlit Community Cloud.
+try:
+    import streamlit as st
+
+    for name in ("OPENAI_API_KEY", "KMA_SERVICE_KEY"):
+        value = st.secrets.get(name)
+        if isinstance(value, str) and value.strip() and not _FILE_API_KEYS.get(name):
+            _FILE_API_KEYS[name] = value.strip()
+    limit = st.secrets.get("LLM_DAILY_LIMIT", 30)
+    if str(limit).isdigit():
+        os.environ.setdefault("LLM_DAILY_LIMIT", str(limit))
+except (ImportError, FileNotFoundError):
+    pass
+
+
 def get(key: str, default: str = "") -> str:
     if key in API_KEY_NAMES:
         return _FILE_API_KEYS.get(key, default).strip()
