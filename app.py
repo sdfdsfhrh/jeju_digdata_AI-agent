@@ -120,7 +120,10 @@ if question:
  form=question_form(question,st.session_state.get('who'),st.session_state.get('when'),date,slot,today)
  with st.spinner('자료를 확인하고 있어요…'):
   try:
-   res=core.run(question,form=form,use_llm=config.llm_enabled())
+   city = {'서귀포시': '서귀포시', '서귀포': '서귀포시', '제주시': '제주시'}.get(question.strip())
+   if city:
+    form['region'] = city
+   res=core.run('' if city else question,form=form,use_llm=config.llm_enabled())
    history.append(dict(question=question,result=res));st.session_state['res']=res
   except data.DataError as e:st.error(str(e))
  st.rerun()
