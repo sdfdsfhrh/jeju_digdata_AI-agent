@@ -1,59 +1,53 @@
-"""설정 읽기: .env 파일 → 환경변수. API 키는 코드에 넣지 않는다.
-
-.env 예시는 프로젝트 최상위의 .env.example 참고.
-python-dotenv 없이도 동작하도록 간단한 .env 파서를 직접 둔다.
-"""
+"""설정 우선순위: 환경변수, .env, .env.eval, Streamlit Secrets."""
 from __future__ import annotations
 
 import os
 from pathlib import Path
 
-from eval_env import read_eval_env
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API_KEY_NAMES = frozenset(("LLM_API_KEY", "OPENAI_API_KEY", "KMA_SERVICE_KEY", "KTO_SERVICE_KEY", "VWORLD_API_KEY"))
-_FILE_API_KEYS: dict[str, str] = {}
+# Snapshot before Streamlit loads Secrets into its environment.
+_ENVIRONMENT = dict(os.environ)
 
 
-def _load_dotenv(path: str):
-    if not os.path.exists(path):
-        return
-    with open(path, encoding="utf-8-sig") as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-            k, v = line.split("=", 1)
-            v = v.split(" #", 1)[0]  # 값 뒤 주석 제거
-            k, v = k.strip(), v.strip().strip('"').strip("'")
-            if k in API_KEY_NAMES:
-                _FILE_API_KEYS[k] = v
-            else:
-                os.environ.setdefault(k, v)
+def _read_settings(path):
+    settings = {}
+    try:
+        lines = path.read_text(encoding="utf-8-sig").splitlines()
+    except FileNotFoundError:
+        return settings
+    for line in lines:
+        name, separator, value = line.strip().partition("=")
+        if separator and not name.startswith("#"):
+            settings[name.strip()] = value.split(" #", 1)[0].strip().strip('"').strip("'")
+    return settings
 
 
-_load_dotenv(os.path.join(ROOT, ".env"))
-
-
-# Load private settings on Streamlit Community Cloud.
+_LOCAL = _read_settings(Path(ROOT) / ".env")
+_EVAL = _read_settings(Path(ROOT) / ".env.eval")
+_SECRET_NAMES = API_KEY_NAMES | {"LLM_DAILY_LIMIT", "VWORLD_SERVICE_URL"}
+_SECRETS = {}
 try:
     import streamlit as st
 
-    for name in ("OPENAI_API_KEY", "KMA_SERVICE_KEY", "VWORLD_API_KEY"):
+    for name in _SECRET_NAMES:
         value = st.secrets.get(name)
-        if isinstance(value, str) and value.strip() and not _FILE_API_KEYS.get(name):
-            _FILE_API_KEYS[name] = value.strip()
-    limit = st.secrets.get("LLM_DAILY_LIMIT", 30)
-    if str(limit).isdigit():
-        os.environ.setdefault("LLM_DAILY_LIMIT", str(limit))
+        if isinstance(value, (str, int)):
+            _SECRETS[name] = str(value).strip()
 except (ImportError, FileNotFoundError):
     pass
 
 
 def get(key: str, default: str = "") -> str:
-    if key in API_KEY_NAMES:
-        return _FILE_API_KEYS.get(key, default).strip()
-    return os.environ.get(key, default).strip()
+    sources = (_ENVIRONMENT, _LOCAL)
+    if key in _SECRET_NAMES or key in {"LLM_PROVIDER", "LLM_MODEL"}:
+        sources += (_EVAL, _SECRETS)
+    for source in sources:
+        value = source.get(key, "").strip()
+        if value:
+            return value
+    return default
 
 
 # --- LLM (선택) ---
@@ -65,18 +59,9 @@ def parse_daily_limit(value):
     return max(0, int(value or '0'))   # 빈 값·0: 제한 없음
 
 
-LLM_DAILY_LIMIT = parse_daily_limit(get("LLM_DAILY_LIMIT"))
+LLM_DAILY_LIMIT = parse_daily_limit(get("LLM_DAILY_LIMIT", "30" if _SECRETS.get("OPENAI_API_KEY") else "0"))
 if get("OPENAI_API_KEY"):
     LLM_PROVIDER, LLM_API_KEY = "openai", get("OPENAI_API_KEY")
-else:
-    try:
-        evaluation = read_eval_env(Path(ROOT) / ".env.eval")
-    except (OSError, ValueError):
-        evaluation = {}
-    if evaluation.get("OPENAI_API_KEY"):
-        LLM_PROVIDER, LLM_API_KEY = "openai", evaluation["OPENAI_API_KEY"]
-        LLM_MODEL = ""
-        LLM_DAILY_LIMIT = parse_daily_limit(evaluation["LLM_DAILY_LIMIT"])
 LLM_USD_KRW = float(get('LLM_USD_KRW') or '1400')  # 실시간 환율이 아닌 참고용 가정
 
 # 공식 일반 텍스트 가격·지원 일정 확인: 2026-11-07 (HANDOFF §6-9 출처).
